@@ -4,8 +4,6 @@ for( let i= -45; i < 45;i++) {
     spreadArr.push(i+.5);
 }
 
-console.log(spreadArr);
-
 
 
 const totalArr = [];

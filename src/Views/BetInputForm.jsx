@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { mlArr, spreadArr, totalArr } from '../HelperStuff';
-
+import './betinputform.css';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
@@ -8,8 +8,15 @@ export default function BetInputForm() {
     const [spreadDropValue, setSpreadDropValue] = useState(0)
     const [totalDropValue, setTotalDropVlaue ] = useState(0);
     const [mlDropValue, setMlDropValue] = useState(100);
-    console.log(spreadArr);
-    console.log(firstDropValue);
+    const [wagered, setWagered] = useState(0);
+    const [toWin, setToWin] = useState(0);
+    const [rotationNum, setRotationNum] = useState('');
+    
+    console.log('firstdropvalue', firstDropValue);
+    console.log('sportDropValue', sportDropValue)
+    console.log('spreadDropValue', spreadDropValue);
+    console.log('totalDropVal', totalDropValue)
+    console.log('mlDropValue', mlDropValue);
     return (
         <div>
             <form>
@@ -39,9 +46,8 @@ export default function BetInputForm() {
                         return (
                             <div>
                             <label> Select Spread:
-                                <select onChange={(e) => setSpreadDropValue(e.target.value)}>
+                                <select value={spreadDropValue} onChange={(e) => setSpreadDropValue(e.target.value)}>
                                     {spreadArr.map((num => {
-                                        console.log(num);
                                         return <option key={num} value={num}>{num}</option>
                                     }))}
                                     </select>
@@ -64,7 +70,7 @@ export default function BetInputForm() {
                                         </select>
                                         </label>
                              
-                                   <label> Select Total:<select onChange={(e) => setTotalDropVlaue(e.target.value)}>
+                                   <label> Select Total:<select value={totalDropValue} onChange={(e) => setTotalDropVlaue(e.target.value)}>
                                 {totalArr.map((num => {
                                    return ( <option key={num}>{num}</option>
                                    )
@@ -87,13 +93,13 @@ export default function BetInputForm() {
                     
                     </div>
                 <label> Amount Wagered
-                    <input />
+                    <input value={wagered} onChange={(e) => setWagered(e.target.value)} />
                 </label>
                 <label> Amount to Win
-                    <input />
+                    <input value={toWin} onChange={(e) => setToWin(e.target.value)}/>
                 </label>
                 <label> Rotation Number:
-                    <input />
+                    <input value={rotationNum} onChange={(e) => setRotationNum(e.target.value)}/>
                 </label>
             </form>
         </div>
