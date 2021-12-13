@@ -28,40 +28,40 @@ export default function BetInputForm() {
     console.log('priceDropValue', priceDropValue);
     console.log('date submit', dateSubmit)
 
-    useEffect(() => {
-        function calcJuiceToWin () {
-            if(wagered !== (toWin/((priceDropValue/100))) || (wagered!== (toWin*(priceDropValue/100)))) {
-                if(priceDropValue>0) {
-                    let wagerPlus = (toWin/(priceDropValue/100));
-                    setWagered(wagerPlus);
-                 }
-                else if (priceDropValue<0) {
-                    let wagerMinus = (toWin * ((priceDropValue/100)*-1));
-                    setWagered(wagerMinus);
-                    }
-                }
+useEffect(() => {
+    function calcJuiceToWin () {
+        if(wagered !== (toWin/((priceDropValue/100))) || (wagered!== (toWin*(priceDropValue/100)))) {
+            if(priceDropValue>0) {
+            let wagerPlus = (toWin/(priceDropValue/100));
+            setWagered(wagerPlus);
             }
-    calcJuiceToWin()}, [priceDropValue, wagered, toWin])
-
-    const handleWagerChange = (e) => {
-        setWagered(e.target.value);
+            else if (priceDropValue<0) {
+            let wagerMinus = (toWin * ((priceDropValue/100)*-1));
+            setWagered(wagerMinus);
+            }
+        }
     }
+calcJuiceToWin()}, [priceDropValue, wagered, toWin])
 
-   const handleToWinChange = (e) => {
+const handleWagerChange = (e) => {                  
+    setWagered(e.target.value); 
+}
+
+const handleToWinChange = (e) => {
     setToWin(e.target.value);
-   }
-   const changeDate = (event) => {
+}
+const changeDate = (event) => {
     setDateBet(event.toDate()) 
 }
 
 const getDate = () => {
     let currentDate = new Date().toLocaleString();
     setDateSubmit(currentDate);
-    ;
 }
-   useEffect(() => {
-       getDate();
-   }, [])
+
+useEffect(() => {
+   getDate();
+}, [])
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,137 +81,144 @@ const handleSubmit = async (e) => {
         notes: notes,
         submitDate: dateSubmit,
     }
-    console.log(betObject);
+console.log(betObject);
+}
 
 
-    }
-
-
-    return (
-        <div className="div-container">
-            <form onSubmit={handleSubmit}>
-                <label> Sport
-                    <select value={sportDropValue} onChange={(e) => setSportDropValue(e.target.value)}>
-                        <option value='NFL'>NFL</option>
-                        <option value='NBA'>NBA</option>
-                        <option value='NCAAB'>NCAAB</option>
+return (
+<div className="div-container">
+<form onSubmit={handleSubmit}>
+    <label> Sport
+    <select 
+        value={sportDropValue} 
+        onChange={(e) => setSportDropValue(e.target.value)}>
+        <option value='NFL'>NFL</option>
+        <option value='NBA'>NBA</option>
+        <option value='NCAAB'>NCAAB</option>
+    </select>
+    </label>
+    <label> Bet Type:
+    <select 
+        value={firstDropValue} 
+        onChange={(e) => setFirstDropValue(e.target.value)}>
+        <option value='Spread'>Spread</option>
+        <option value='Total'>Total</option>
+        <option value='Moneyline'>Moneyline</option>
+    </select>
+    </label>
+    <div> 
+        {(() => { 
+            if (firstDropValue === 'Spread') {
+                return (
+                <div>
+                    <label> Spread:
+                    <select 
+                        value={spreadDropValue} 
+                        onChange={(e) => setSpreadDropValue(e.target.value)}>
+                        {spreadArr.map((num => {
+                        return <option key={num} value={num}>{num}</option> 
+                        }))}  
                     </select>
-                </label>
-                <label> Bet Type:
-                    <select value={firstDropValue} onChange={(e) => setFirstDropValue(e.target.value)}>
-                        <option value='Spread'>
-                            Spread
-                        </option>
-                        <option value='Total'>
-                            Total
-                        </option>
-                        <option value='Moneyline'>
-                            Moneyline
-                        </option>
-                    </select>
-                </label>
-                   <div> 
-                    {(() => {
-                        if (firstDropValue === 'Spread') {
-                        return (
-                            <div>
-                            <label> Spread:
-                                <select value={spreadDropValue} onChange={(e) => setSpreadDropValue(e.target.value)}>
-                                    {spreadArr.map((num => {
-                                        return <option key={num} value={num}>{num}</option>
-                                    }))}
-                                    </select>
-                                
-                            </label>
-                            <label> Price:
-                                <select value={priceDropValue} onChange={(e) => setPriceDropValue(e.target.value)}>
-                                    {juiceArr.map((num => {
-                                        return <option key={num} value={num}>{num}</option>
-                                    }))}
-                                    </select>
-                                
-                            </label>
-                            <label> Team:
-                                <input value={team} onChange={(e) => setTeam(e.target.value)} />
-                            </label>
-                            </div>
-                           
-                    
-                         ) }
-                         else if (firstDropValue === 'Total') {
-                             return (<div>
-                                 <label> Over/Under:
-                                     <select value={overUnder} onChange={setOverUnder}>
-                                        <option value='Over'>Over</option>
-                                        <option value='Under'>Under</option>
-                                        </select>
-                                        </label>
-                             
-                                   <label> Select Total:<select value={totalDropValue} onChange={(e) => setTotalDropValue(e.target.value)}>
-                                {totalArr.map((num => {
-                                   return ( <option key={num}>{num}</option>
-                                   )
-                                }))}
-                                </select>
-                                </label>
-                                <label>Price:
-                                    <select value={priceDropValue} onChange={(e) => setPriceDropValue(e.target.value)}>
-                                    {juiceArr.map((num => {
-                                        return ( <option key={num}>{num}</option>)
-                                    }))}
-                                    </select>
-                                </label>
-                                </div>
-                                )
-                                }
-                                else if (firstDropValue === 'Moneyline') {
-                                    
-                                    
-                                    
-                                  return ( <label>Price:
-                                      <select value={priceDropValue} onChange={(e) => setPriceDropValue(e.target.value)}>
-                                          {mlArr.map((num => {
-                                              return (<option value={num}>{num}</option>)
-                                          }))}
-                                      </select>
-                                  </label>  
-                                  )}
-                            })()}
-                    
-                    </div>
-                <label> Amount to Win
-                    <input value={toWin} onChange={handleToWinChange}/>
-                </label>
-                <label> Amount Wagered
-                    <input value={wagered} onChange={handleWagerChange} />
-                </label>
-                
-                <label> Rotation Number:
-                    <input value={rotationNum} onChange={(e) => setRotationNum(e.target.value)}/>
-                </label>
-                <label>Win/Lose/Push
-                    <select value={resultValue} onChange={(e) => setResultValue(e.target.value)}>
-                        <option value="Win">Win</option>
-                        <option value="Lose">Lose</option>
-                        <option value="Push">Push</option>
-                    </select>
-                </label>
-                <label className='bet-time'>Date of Bet:
-                        <Datetime 
-                            id="datepicker"
-                            className='act-datetime'
-                            dateFormat="MM-DD-YY"
-                            timeFormat={false}
-                            value={dateBet}
-                            onChange={changeDate}
-   
-                       />
                     </label>
-                <label> Game/Bet Notes
-                    <input className='notes-input' value={notes} onChange={(e) => setNotes(e.target.value)} />
-                </label>
-                <button type='submit'>Submit Bet</button>
-            </form>
-        </div>
+                    <label> Price:
+                    <select 
+                        value={priceDropValue} 
+                        onChange={(e) => setPriceDropValue(e.target.value)}>
+                        {juiceArr.map((num => {
+                        return <option key={num} value={num}>{num}</option>
+                        }))}
+                    </select>
+                    </label>
+                    <label> Team:
+                    <input 
+                        value={team} 
+                        onChange={(e) => setTeam(e.target.value)} />
+                    </label>
+                </div> )
+            }
+            else if (firstDropValue === 'Total') {
+                return (
+                <div>
+                    <label> Over/Under:
+                    <select 
+                        value={overUnder} 
+                        onChange={setOverUnder}>
+                        <option value='Over'>Over</option>
+                        <option value='Under'>Under</option>
+                    </select>
+                    </label>
+                    <label> Select Total:
+                    <select 
+                        value={totalDropValue} 
+                        onChange={(e) => setTotalDropValue(e.target.value)}>
+                        {totalArr.map((num => {
+                            return <option key={num}>{num}</option>
+                        }))}
+                    </select>
+                    </label>
+                    <label>Price:
+                    <select 
+                        value={priceDropValue} 
+                        onChange={(e) => setPriceDropValue(e.target.value)}>
+                        {juiceArr.map((num => {
+                            return <option key={num}>{num}</option>
+                        }))}
+                    </select>
+                    </label>
+                </div> )
+            }
+            else if (firstDropValue === 'Moneyline') {
+                return ( 
+                    <label>Price:
+                    <select 
+                        value={priceDropValue} 
+                        onChange={(e) => setPriceDropValue(e.target.value)}>
+                        {mlArr.map((num => {
+                            return <option value={num}>{num}</option>
+                        }))}
+                    </select>
+                    </label>  )
+            }
+        })()}
+    </div>
+    <label> Amount to Win
+    <input value={toWin} onChange={handleToWinChange}/>
+    </label>
+    <label> Amount Wagered
+    <input value={wagered} onChange={handleWagerChange} />
+    </label>
+    <label> Rotation Number:
+    <input 
+        value={rotationNum} 
+        onChange={(e) => setRotationNum(e.target.value)}/>
+    </label>
+    <label>Win/Lose/Push
+    <select 
+        value={resultValue} 
+        onChange={(e) => setResultValue(e.target.value)}>
+            <option value="Win">Win</option>
+            <option value="Lose">Lose</option>
+            <option value="Push">Push</option>
+    </select>
+    </label>
+    <label className='bet-time'>Date of Bet:
+    <Datetime 
+        id="datepicker"
+        className='act-datetime'
+        dateFormat="MM-DD-YY"
+        timeFormat={false}
+        value={dateBet}
+        onChange={changeDate}
+    />
+    </label>
+    <label> Game/Bet Notes
+    <input 
+        className='notes-input' 
+        value={notes} 
+        onChange={(e) => setNotes(e.target.value)} />
+    </label>
+    <button type='submit'>Submit Bet</button>
+</form>
+</div>
     )
 }
