@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { mlArr, spreadArr, totalArr, juiceArr } from '../HelperStuff';
 import Datetime from 'react-datetime';
-import { nflArr } from '../SportTeams';
+import { nflArr, nbaArr } from '../SportTeams';
 import "react-datetime/css/react-datetime.css";
 import './betinputform.css';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
-    const [sportDropValue, setSportDropValue] = useState('Football')
+    const [sportDropValue, setSportDropValue] = useState('NFL')
     const [spreadDropValue, setSpreadDropValue] = useState(-3)
     const [totalDropValue, setTotalDropValue ] = useState('');
     const [team, setTeam] = useState('');
@@ -93,6 +93,8 @@ return (
             <option value='NFL'>NFL</option>
             <option value='NBA'>NBA</option>
             <option value='NCAAB'>NCAAB</option>
+            <option value='MLB'>MLB</option>
+            <option value='NCAAF'>NCAAF</option>
         </select>
         </label>
         <label> Bet Type:
@@ -199,13 +201,28 @@ return (
         />
         </label>
         <label> Team:
-        <select 
-            value={team} 
-            onChange={(e) => setTeam(e.target.value)} >
-            {nflArr.map((team => {
-                return <option key={team.name}>{team.code}</option>
-            }))}
-        </select>
+        {(() => { 
+            if (sportDropValue === 'NFL') {
+                return (
+                <select 
+                    value={team} 
+                    onChange={(e) => setTeam(e.target.value)}>
+                {nflArr.map((team => {
+                    return <option key={team.name}>{team.code}</option>
+                }))}
+                </select> )
+            }
+            else if (sportDropValue === 'NBA') {
+                return (
+                <select 
+                    value={team}
+                    onChange={(e) => setTeam(e.target.value)}>
+                {nbaArr.map((team => {
+                    return <option key={team.teamId}>{team.abbreviation}</option>
+                }))}
+                </select> )
+            }
+            })()}
         </label>
         <label> Rotation Number:
         <input 
