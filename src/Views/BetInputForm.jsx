@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import { mlArr, spreadArr, totalArr, juiceArr } from '../HelperStuff';
 import Datetime from 'react-datetime';
+import { nflArr } from '../SportTeams';
 import "react-datetime/css/react-datetime.css";
 import './betinputform.css';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
     const [sportDropValue, setSportDropValue] = useState('Football')
-    const [spreadDropValue, setSpreadDropValue] = useState('')
+    const [spreadDropValue, setSpreadDropValue] = useState(-3)
     const [totalDropValue, setTotalDropValue ] = useState('');
     const [team, setTeam] = useState('');
     const [wagered, setWagered] = useState(100);
@@ -20,7 +21,6 @@ export default function BetInputForm() {
     const [dateSubmit, setDateSubmit] = useState();
     const [overUnder, setOverUnder] = useState('');
 
-    
     console.log('firstdropvalue', firstDropValue);
     console.log('sportDropValue', sportDropValue)
     console.log('spreadDropValue', spreadDropValue);
@@ -127,11 +127,7 @@ return (
                         }))}
                     </select>
                     </label>
-                    <label> Team:
-                    <input 
-                        value={team} 
-                        onChange={(e) => setTeam(e.target.value)} />
-                    </label>
+                   
                 </div> )
             }   else if (firstDropValue === 'Total') {
                 return (
@@ -183,11 +179,6 @@ return (
         <label> Amount Wagered
         <input value={wagered} onChange={handleWagerChange} />
         </label>
-        <label> Rotation Number:
-        <input 
-            value={rotationNum} 
-            onChange={(e) => setRotationNum(e.target.value)}/>
-        </label>
         <label>Win/Lose/Push
         <select 
             value={resultValue} 
@@ -197,15 +188,29 @@ return (
             <option value="Push">Push</option>
         </select>
         </label>
-        <label className='bet-time'>Date of Bet:
+        <label className='bet-date'>Date of Bet:
         <Datetime 
             id="datepicker"
-            className='act-datetime'
+            className='bet-datetime'
             dateFormat="MM-DD-YY"
             timeFormat={false}
             value={dateBet}
             onChange={changeDate}
         />
+        </label>
+        <label> Team:
+        <select 
+            value={team} 
+            onChange={(e) => setTeam(e.target.value)} >
+            {nflArr.map((team => {
+                return <option key={team.name}>{team.code}</option>
+            }))}
+        </select>
+        </label>
+        <label> Rotation Number:
+        <input 
+            value={rotationNum} 
+            onChange={(e) => setRotationNum(e.target.value)}/>
         </label>
         <label> Game/Bet Notes
         <input 
