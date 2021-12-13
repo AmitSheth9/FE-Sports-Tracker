@@ -81,33 +81,33 @@ const handleSubmit = async (e) => {
         notes: notes,
         submitDate: dateSubmit,
     }
-console.log(betObject);
+    console.log(betObject);
 }
 
 
 return (
 <div className="div-container">
-<form onSubmit={handleSubmit}>
-    <label> Sport
-    <select 
-        value={sportDropValue} 
-        onChange={(e) => setSportDropValue(e.target.value)}>
-        <option value='NFL'>NFL</option>
-        <option value='NBA'>NBA</option>
-        <option value='NCAAB'>NCAAB</option>
-    </select>
-    </label>
-    <label> Bet Type:
-    <select 
-        value={firstDropValue} 
-        onChange={(e) => setFirstDropValue(e.target.value)}>
-        <option value='Spread'>Spread</option>
-        <option value='Total'>Total</option>
-        <option value='Moneyline'>Moneyline</option>
-    </select>
-    </label>
-    <div> 
-        {(() => { 
+    <form onSubmit={handleSubmit}>
+        <label> Sport
+        <select 
+            value={sportDropValue} 
+            onChange={(e) => setSportDropValue(e.target.value)}>
+            <option value='NFL'>NFL</option>
+            <option value='NBA'>NBA</option>
+            <option value='NCAAB'>NCAAB</option>
+        </select>
+        </label>
+        <label> Bet Type:
+        <select 
+            value={firstDropValue} 
+            onChange={(e) => setFirstDropValue(e.target.value)}>
+            <option value='Spread'>Spread</option>
+            <option value='Total'>Total</option>
+            <option value='Moneyline'>Moneyline</option>
+        </select>
+        </label>
+        <div> 
+            {(() => { 
             if (firstDropValue === 'Spread') {
                 return (
                 <div>
@@ -135,8 +135,7 @@ return (
                         onChange={(e) => setTeam(e.target.value)} />
                     </label>
                 </div> )
-            }
-            else if (firstDropValue === 'Total') {
+            }   else if (firstDropValue === 'Total') {
                 return (
                 <div>
                     <label> Over/Under:
@@ -166,8 +165,7 @@ return (
                     </select>
                     </label>
                 </div> )
-            }
-            else if (firstDropValue === 'Moneyline') {
+            }   else if (firstDropValue === 'Moneyline') {
                 return ( 
                     <label>Price:
                     <select 
@@ -179,46 +177,46 @@ return (
                     </select>
                     </label>  )
             }
-        })()}
-    </div>
-    <label> Amount to Win
-    <input value={toWin} onChange={handleToWinChange}/>
-    </label>
-    <label> Amount Wagered
-    <input value={wagered} onChange={handleWagerChange} />
-    </label>
-    <label> Rotation Number:
-    <input 
-        value={rotationNum} 
-        onChange={(e) => setRotationNum(e.target.value)}/>
-    </label>
-    <label>Win/Lose/Push
-    <select 
-        value={resultValue} 
-        onChange={(e) => setResultValue(e.target.value)}>
+            })()}
+        </div>
+        <label> Amount to Win
+        <input value={toWin} onChange={handleToWinChange}/>
+        </label>
+        <label> Amount Wagered
+        <input value={wagered} onChange={handleWagerChange} />
+        </label>
+        <label> Rotation Number:
+        <input 
+            value={rotationNum} 
+            onChange={(e) => setRotationNum(e.target.value)}/>
+        </label>
+        <label>Win/Lose/Push
+        <select 
+            value={resultValue} 
+            onChange={(e) => setResultValue(e.target.value)}>
             <option value="Win">Win</option>
             <option value="Lose">Lose</option>
             <option value="Push">Push</option>
-    </select>
-    </label>
-    <label className='bet-time'>Date of Bet:
-    <Datetime 
-        id="datepicker"
-        className='act-datetime'
-        dateFormat="MM-DD-YY"
-        timeFormat={false}
-        value={dateBet}
-        onChange={changeDate}
-    />
-    </label>
-    <label> Game/Bet Notes
-    <input 
-        className='notes-input' 
-        value={notes} 
-        onChange={(e) => setNotes(e.target.value)} />
-    </label>
-    <button type='submit'>Submit Bet</button>
-</form>
+        </select>
+        </label>
+        <label className='bet-time'>Date of Bet:
+        <Datetime 
+            id="datepicker"
+            className='act-datetime'
+            dateFormat="MM-DD-YY"
+            timeFormat={false}
+            value={dateBet}
+            onChange={changeDate}
+        />
+        </label>
+        <label> Game/Bet Notes
+        <input 
+            className='notes-input' 
+            value={notes} 
+            onChange={(e) => setNotes(e.target.value)} />
+        </label>
+        <button type='submit'>Submit Bet</button>
+    </form>
 </div>
     )
 }
