@@ -193,7 +193,8 @@ return (
         </label>
         <label className='win-wagered'> Amount Wagered
         <input value={wagered} onChange={handleWagerChange} />
-        </label><br/>
+        </label>
+        <br/>
         <label className='result'>Win/Lose/Push
         <select 
             value={resultValue} 

@@ -56,7 +56,7 @@ font-size: 19px;
     width: 30%;
     position: relative;
     top: -5px;
-    height: 40px;
+    height: 50px;
 }
 .div-spread {
     width: 100%;
@@ -64,10 +64,12 @@ font-size: 19px;
 }
 .div-conditional-container {
     display: flex;
-    height: 40px;
+    height: 50px;
     background-color:lightgreen;
     border: 5px solid white;
     margin-bottom: 25px;
+    justify-content: space-evenly;
+
 }
 .label-spread-price {
     width: 50%;
@@ -91,10 +93,11 @@ font-size: 19px;
 .notes {
     width: 100%;
     margin-top: 20px;
+    height: 40px;
 }
 .notes-input {
     width: 50%;
-    font-size: 15px;
+    font-size: 20px;
     margin-left: 10px;
 }
 .label-mlprice {
