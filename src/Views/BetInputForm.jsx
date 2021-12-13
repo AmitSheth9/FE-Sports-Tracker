@@ -28,63 +28,61 @@ export default function BetInputForm() {
     console.log('priceDropValue', priceDropValue);
     console.log('date submit', dateSubmit)
 
-useEffect(() => {
-    function calcJuiceToWin () {
-        if(wagered !== (toWin/((priceDropValue/100))) || (wagered!== (toWin*(priceDropValue/100)))) {
-            if(priceDropValue>0) {
-            let wagerPlus = (toWin/(priceDropValue/100));
-            setWagered(wagerPlus);
-            }
-            else if (priceDropValue<0) {
-            let wagerMinus = (toWin * ((priceDropValue/100)*-1));
-            setWagered(wagerMinus);
+    useEffect(() => {
+        function calcJuiceToWin () {
+            if(wagered !== (toWin/((priceDropValue/100))) || (wagered!== (toWin*(priceDropValue/100)))) {
+                if(priceDropValue>0) {
+                let wagerPlus = (toWin/(priceDropValue/100));
+                setWagered(wagerPlus);
+                }
+                else if (priceDropValue<0) {
+                let wagerMinus = (toWin * ((priceDropValue/100)*-1));
+                setWagered(wagerMinus);
+                }
             }
         }
+        calcJuiceToWin()}, [priceDropValue, wagered, toWin])
+
+    const handleWagerChange = (e) => {                  
+        setWagered(e.target.value); 
     }
-calcJuiceToWin()}, [priceDropValue, wagered, toWin])
 
-const handleWagerChange = (e) => {                  
-    setWagered(e.target.value); 
-}
-
-const handleToWinChange = (e) => {
-    setToWin(e.target.value);
-}
-const changeDate = (event) => {
-    setDateBet(event.toDate()) 
-}
-
-const getDate = () => {
-    let currentDate = new Date().toLocaleString();
-    setDateSubmit(currentDate);
-}
-
-useEffect(() => {
-   getDate();
-}, [])
-
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    const betObject = {
-        sport: sportDropValue,
-        betType: firstDropValue,
-        spread: spreadDropValue,
-        overUnder: overUnder,
-        total: totalDropValue,
-        price: priceDropValue,
-        team: team,
-        win: toWin,
-        wager: wagered,
-        rotation: rotationNum,
-        result: resultValue,
-        betDate: dateBet,
-        notes: notes,
-        submitDate: dateSubmit,
+    const handleToWinChange = (e) => {
+        setToWin(e.target.value);
     }
-    console.log(betObject);
-}
+    const changeDate = (event) => {
+        setDateBet(event.toDate()) 
+    }
 
+    const getDate = () => {
+        let currentDate = new Date().toLocaleString();
+        setDateSubmit(currentDate);
+    }
 
+    useEffect(() => {
+        getDate();
+    }, [])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const betObject = {
+            sport: sportDropValue,
+            betType: firstDropValue,
+            spread: spreadDropValue,
+            overUnder: overUnder,
+            total: totalDropValue,
+            price: priceDropValue,
+            team: team,
+            win: toWin,
+            wager: wagered,
+            rotation: rotationNum,
+            result: resultValue,
+            betDate: dateBet,
+            notes: notes,
+            submitDate: dateSubmit,
+        }
+        console.log(betObject);
+    }
 return (
 <div className="div-container">
     <form onSubmit={handleSubmit}>
