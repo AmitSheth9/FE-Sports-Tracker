@@ -84,9 +84,9 @@ export default function BetInputForm() {
         console.log(betObject);
     }
 return (
-<div className="div-container">
-    <form onSubmit={handleSubmit}>
-        <label> Sport
+<div >
+    <form className="form-container" onSubmit={handleSubmit}>
+        <label className='sport'> Sport
         <select 
             value={sportDropValue} 
             onChange={(e) => setSportDropValue(e.target.value)}>
@@ -97,7 +97,7 @@ return (
             <option value='NCAAF'>NCAAF</option>
         </select>
         </label>
-        <label> Bet Type:
+        <label className='bet-type'> Bet Type:
         <select 
             value={firstDropValue} 
             onChange={(e) => setFirstDropValue(e.target.value)}>
@@ -106,12 +106,12 @@ return (
             <option value='Moneyline'>Moneyline</option>
         </select>
         </label>
-        <div> 
+        <div className='div-conditional-container'> 
             {(() => { 
             if (firstDropValue === 'Spread') {
                 return (
-                <div>
-                    <label> Spread:
+                <div className='div-spread'>
+                    <label className='label-spread'> Spread:
                     <select 
                         value={spreadDropValue} 
                         onChange={(e) => setSpreadDropValue(e.target.value)}>
@@ -120,7 +120,7 @@ return (
                         }))}  
                     </select>
                     </label>
-                    <label> Price:
+                    <label className='label-spread-price'> Price:
                     <select 
                         value={priceDropValue} 
                         onChange={(e) => setPriceDropValue(e.target.value)}>
@@ -133,8 +133,8 @@ return (
                 </div> )
             }   else if (firstDropValue === 'Total') {
                 return (
-                <div>
-                    <label> Over/Under:
+                <div className='div-total'>
+                    <label className='label-total'> Over/Under:
                     <select 
                         value={overUnder} 
                         onChange={setOverUnder}>
@@ -142,7 +142,7 @@ return (
                         <option value='Under'>Under</option>
                     </select>
                     </label>
-                    <label> Select Total:
+                    <label className='label-total-amount'> Select Total:
                     <select 
                         value={totalDropValue} 
                         onChange={(e) => setTotalDropValue(e.target.value)}>
@@ -175,13 +175,13 @@ return (
             }
             })()}
         </div>
-        <label> Amount to Win
+        <label className='win-wagered'> Amount to Win
         <input value={toWin} onChange={handleToWinChange}/>
         </label>
-        <label> Amount Wagered
+        <label className='win-wagered'> Amount Wagered
         <input value={wagered} onChange={handleWagerChange} />
-        </label>
-        <label>Win/Lose/Push
+        </label><br/>
+        <label className='result'>Win/Lose/Push
         <select 
             value={resultValue} 
             onChange={(e) => setResultValue(e.target.value)}>
@@ -192,6 +192,7 @@ return (
         </label>
         <label className='bet-date'>Date of Bet:
         <Datetime 
+            inputProps={{className:'datetime'}}
             id="datepicker"
             className='bet-datetime'
             dateFormat="MM-DD-YY"
@@ -224,12 +225,12 @@ return (
             }
             })()}
         </label>
-        <label> Rotation Number:
+        <label className='rotation'> Rotation Number:
         <input 
             value={rotationNum} 
             onChange={(e) => setRotationNum(e.target.value)}/>
         </label>
-        <label> Game/Bet Notes
+        <label className='notes'>Bet Notes
         <input 
             className='notes-input' 
             value={notes} 
