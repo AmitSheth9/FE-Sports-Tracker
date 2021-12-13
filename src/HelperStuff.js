@@ -25,4 +25,5 @@ for (let i=-150; i<151; i++) {
 }
 
 
+
 export { spreadArr, totalArr, mlArr, juiceArr };
