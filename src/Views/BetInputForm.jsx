@@ -20,6 +20,7 @@ export default function BetInputForm() {
     const [dateBet, setDateBet] = useState();
     const [dateSubmit, setDateSubmit] = useState();
     const [overUnder, setOverUnder] = useState('');
+    const [gamePart, setGamePart] =useState('Game');
 
     console.log('firstdropvalue', firstDropValue);
     console.log('sportDropValue', sportDropValue)
@@ -68,6 +69,7 @@ export default function BetInputForm() {
         const betObject = {
             sport: sportDropValue,
             betType: firstDropValue,
+            gamePart: gamePart,
             spread: spreadDropValue,
             overUnder: overUnder,
             total: totalDropValue,
@@ -97,6 +99,7 @@ return (
             <option value='NCAAF'>NCAAF</option>
         </select>
         </label>
+        <div className='row-two'>
         <label className='bet-type'> Bet Type:
         <select 
             value={firstDropValue} 
@@ -106,6 +109,16 @@ return (
             <option value='Moneyline'>Moneyline</option>
         </select>
         </label>
+        <label className='game-part'>
+            <select
+                value={gamePart}
+                onChange={(e) => setGamePart(e.target.value)}>
+                <option value='Game'>Gm</option>   
+                <option value='1H'>1H</option>
+                <option value='2H'>2H</option>
+                </select>
+        </label>
+        </div>
         <div className='div-conditional-container'> 
             {(() => { 
             if (firstDropValue === 'Spread') {
@@ -163,7 +176,7 @@ return (
                 </div> )
             }   else if (firstDropValue === 'Moneyline') {
                 return ( 
-                    <label>Price:
+                    <label className='label-mlprice'>Price:
                     <select 
                         value={priceDropValue} 
                         onChange={(e) => setPriceDropValue(e.target.value)}>
@@ -201,7 +214,7 @@ return (
             onChange={changeDate}
         />
         </label>
-        <label> Team:
+        <label className='label-teams'> Team:
         {(() => { 
             if (sportDropValue === 'NFL') {
                 return (
