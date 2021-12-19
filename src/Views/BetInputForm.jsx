@@ -11,8 +11,8 @@ export default function BetInputForm() {
     const [spreadDropValue, setSpreadDropValue] = useState(-3)
     const [totalDropValue, setTotalDropValue ] = useState('');
     const [team, setTeam] = useState('');
-    const [wagered, setWagered] = useState(100);
-    const [toWin, setToWin] = useState(100);
+    const [wagered, setWagered] = useState(105);
+    const [toWin, setToWin] = useState(0);
     const [rotationNum, setRotationNum] = useState('');
     const [priceDropValue, setPriceDropValue] = useState(-105);
     const [resultValue, setResultValue] = useState('Win');
@@ -58,34 +58,34 @@ export default function BetInputForm() {
         if (e.target.name === 'win') {
             console.log('winname', e.target.name);
             setToWin(e.target.value);
-            setWagered(calcWager());
+            setWagered(calcWager(e));
         }
         else if (e.target.name === 'wager') {
             console.log('wagername', e.target.name);
             setWagered(e.target.value);
-            setToWin(calcWin());
+            setToWin(calcWin(e));
         }
     }
-    function calcWager () {
-        if(wagered !== (toWin/((priceDropValue/100))) || (wagered!== (toWin*(priceDropValue/100)))) {
+    function calcWager (e) {
+        if(wagered !== (e.target.value/((priceDropValue/100))) || (wagered!== (e.target.value*(priceDropValue/100)))) {
             if(priceDropValue>0) {
-            let wagerPlus = (toWin/(priceDropValue/100));
+            let wagerPlus = (e.target.value/(priceDropValue/100));
             return wagerPlus;
             }
             else if (priceDropValue<0) {
-            let wagerMinus = (toWin * ((priceDropValue/100)*-1));
+            let wagerMinus = (e.target.value * ((priceDropValue/100)*-1));
             return wagerMinus;
             }
         }
     }
-    function calcWin () {
+    function calcWin (e) {
         if (priceDropValue<0) {
-            let winMinus = ((wagered)/((priceDropValue/100)*-1));
+            let winMinus = ((e.target.value)/((priceDropValue/100)*-1));
             return winMinus;
         
         }
         else if(priceDropValue>0) {
-            let winPlus =((wagered)*(priceDropValue/100));
+            let winPlus =((e.target.value)*(priceDropValue/100));
             return winPlus;
         }
     }
