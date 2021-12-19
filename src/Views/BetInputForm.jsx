@@ -12,7 +12,7 @@ export default function BetInputForm() {
     const [totalDropValue, setTotalDropValue ] = useState('');
     const [team, setTeam] = useState('');
     const [wagered, setWagered] = useState(105);
-    const [toWin, setToWin] = useState(0);
+    const [toWin, setToWin] = useState(100);
     const [rotationNum, setRotationNum] = useState('');
     const [priceDropValue, setPriceDropValue] = useState(-105);
     const [resultValue, setResultValue] = useState('Win');
@@ -54,14 +54,12 @@ export default function BetInputForm() {
         setToWin(e.target.value);
     }
     const handleWinWager = (e) => {
-        console.log('TESTTTTTTTTTTTT', e.target.name);
+        console.log('etargetname', e.target.name);
         if (e.target.name === 'win') {
-            console.log('winname', e.target.name);
             setToWin(e.target.value);
             setWagered(calcWager(e));
         }
         else if (e.target.name === 'wager') {
-            console.log('wagername', e.target.name);
             setWagered(e.target.value);
             setToWin(calcWin(e));
         }
@@ -151,7 +149,7 @@ return (
             <select
                 value={gamePart}
                 onChange={(e) => setGamePart(e.target.value)}>
-                <option value='Game'>Gm</option>   
+                <option value='Game'>GM</option>   
                 <option value='1H'>1H</option>
                 <option value='2H'>2H</option>
                 </select>
@@ -226,11 +224,11 @@ return (
             }
             })()}
         </div>
-        <label className='win-wagered'> Amount to Win
-        <input name='win' value={toWin} onChange={handleWinWager}/>
-        </label>
         <label className='win-wagered'> Amount Wagered
         <input name='wager' value={wagered} onChange={handleWinWager} />
+        </label>
+        <label className='win-wagered'> Amount to Win
+        <input name='win' value={toWin} onChange={handleWinWager}/>
         </label>
         <br/>
         <label className='result'>Win/Lose/Push
