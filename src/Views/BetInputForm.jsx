@@ -1,10 +1,50 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useReducer} from 'react'
 import { mlArr, spreadArr, totalArr, juiceArr } from '../HelperStuff';
 import Datetime from 'react-datetime';
 import { nflArr, nbaArr } from '../SportTeams';
 import "react-datetime/css/react-datetime.css";
 import './betinputform.css';
 
+const wwReducer = (wwChanged, action ) => {
+    switch (action.type) {
+        case 'wagerChange': {
+            return {...wwChanged, wageredR: action.value, winR: calcsWin(action)  }
+        }
+        case 'winChange': {
+            return {...wwChanged, winR: action.value, wageredR: calcsWagered(action)}
+        }
+        default: {
+            throw Error(`error here ${action.type}`)
+
+        }
+    }
+}
+function calcsWin (action) {
+        if(105>0) {
+        let winPlus =((action.value)*(105/100));
+        return winPlus;
+        }
+        else if (105<0) {
+        let winMinus = ((action.value)/((105/100)*-1));
+        return winMinus;
+        }
+    }
+    function calcsWagered (action) {
+            if(105>0) {
+            let wagerPlus = (action.value/(105/100));
+            return wagerPlus;
+            }
+            else if (105<0) {
+            let wagerMinus = (action.value * ((105/100)*-1));
+            return wagerMinus;
+            }
+        }
+    
+
+
+let initialValue = { wageredR: 105,
+                    winR: 100,
+                price: 105 }
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
     const [sportDropValue, setSportDropValue] = useState('NFL')
@@ -22,6 +62,8 @@ export default function BetInputForm() {
     const [overUnder, setOverUnder] = useState('');
     const [gamePart, setGamePart] =useState('Game');
 
+    const [wwChanged, dispatch] = useReducer(wwReducer, initialValue)
+    const { winR, wageredR } = wwChanged;
     console.log('firstdropvalue', firstDropValue);
     console.log('sportDropValue', sportDropValue)
     console.log('spreadDropValue', spreadDropValue);
@@ -45,11 +87,11 @@ export default function BetInputForm() {
         calcJuiceToWin()}, [priceDropValue, wagered, toWin])
 
     const handleWagerChange = (e) => {                  
-        setWagered(e.target.value); 
+        dispatch({ type: 'wagerChange', value: e.target.value}); 
     }
 
     const handleToWinChange = (e) => {
-        setToWin(e.target.value);
+        dispatch({ type: 'winChange', value: e.target.value});
     }
     const changeDate = (event) => {
         setDateBet(event.toDate()) 
@@ -113,7 +155,7 @@ return (
             <select
                 value={gamePart}
                 onChange={(e) => setGamePart(e.target.value)}>
-                <option value='Game'>Gm</option>   
+                <option value='Game'>GM</option>   
                 <option value='1H'>1H</option>
                 <option value='2H'>2H</option>
                 </select>
@@ -189,10 +231,10 @@ return (
             })()}
         </div>
         <label className='win-wagered'> Amount to Win
-        <input value={toWin} onChange={handleToWinChange}/>
+        <input value={winR} onChange={handleToWinChange}/>
         </label>
         <label className='win-wagered'> Amount Wagered
-        <input value={wagered} onChange={handleWagerChange} />
+        <input value={wageredR} onChange={handleWagerChange} />
         </label>
         <br/>
         <label className='result'>Win/Lose/Push
