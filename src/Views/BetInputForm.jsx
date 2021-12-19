@@ -7,11 +7,14 @@ import './betinputform.css';
 
 const wwReducer = (wwChanged, action ) => {
     switch (action.type) {
+        case 'priceChange': {
+            return {...wwChanged, priceR: action.value}
+        }
         case 'wagerChange': {
             return {...wwChanged, wageredR: action.value, winR: calcsWin(action)  }
         }
         case 'winChange': {
-            return {...wwChanged, winR: action.value, wageredR: calcsWagered(action)}
+            return {...wwChanged, winR: action.value, wageredR: calcsWagered(action, wwChanged.priceR)}
         }
         default: {
             throw Error(`error here ${action.type}`)
@@ -29,13 +32,13 @@ function calcsWin (action) {
         return winMinus;
         }
     }
-    function calcsWagered (action) {
+    function calcsWagered (action, price) {
             if(105>0) {
-            let wagerPlus = (action.value/(105/100));
+            let wagerPlus = (action.value/(price/100));
             return wagerPlus;
             }
             else if (105<0) {
-            let wagerMinus = (action.value * ((105/100)*-1));
+            let wagerMinus = (action.value * ((price/100)*-1));
             return wagerMinus;
             }
         }
@@ -63,13 +66,14 @@ export default function BetInputForm() {
     const [gamePart, setGamePart] =useState('Game');
 
     const [wwChanged, dispatch] = useReducer(wwReducer, initialValue)
-    const { winR, wageredR } = wwChanged;
+    const { winR, wageredR, priceR } = wwChanged;
     console.log('firstdropvalue', firstDropValue);
     console.log('sportDropValue', sportDropValue)
     console.log('spreadDropValue', spreadDropValue);
     console.log('totalDropVal', totalDropValue)
     console.log('priceDropValue', priceDropValue);
     console.log('date submit', dateSubmit)
+    console.log('priceR', priceR)
 
     useEffect(() => {
         function calcJuiceToWin () {
@@ -87,11 +91,14 @@ export default function BetInputForm() {
         calcJuiceToWin()}, [priceDropValue, wagered, toWin])
 
     const handleWagerChange = (e) => {                  
-        dispatch({ type: 'wagerChange', value: e.target.value}); 
+        dispatch({ type: 'wagerChange', value: e.target.value, price: priceR}); 
     }
 
     const handleToWinChange = (e) => {
-        dispatch({ type: 'winChange', value: e.target.value});
+        dispatch({ type: 'winChange', value: e.target.value, price: priceR});
+    }
+    const handlePrice = (e) => {
+        dispatch({type: 'priceChange', value: e.target.value})
     }
     const changeDate = (event) => {
         setDateBet(event.toDate()) 
@@ -177,8 +184,8 @@ return (
                     </label>
                     <label className='label-spread-price'> Price:
                     <select 
-                        value={priceDropValue} 
-                        onChange={(e) => setPriceDropValue(e.target.value)}>
+                        value={priceR} 
+                        onChange={handlePrice}>
                         {juiceArr.map((num => {
                         return <option key={num} value={num}>{num}</option>
                         }))}
@@ -208,8 +215,8 @@ return (
                     </label>
                     <label>Price:
                     <select 
-                        value={priceDropValue} 
-                        onChange={(e) => setPriceDropValue(e.target.value)}>
+                        value={priceR} 
+                        onChange={handlePrice}>
                         {juiceArr.map((num => {
                             return <option key={num}>{num}</option>
                         }))}
@@ -220,8 +227,8 @@ return (
                 return ( 
                     <label className='label-mlprice'>Price:
                     <select 
-                        value={priceDropValue} 
-                        onChange={(e) => setPriceDropValue(e.target.value)}>
+                        value={priceR} 
+                        onChange={handlePrice}>
                         {mlArr.map((num => {
                             return <option value={num}>{num}</option>
                         }))}
