@@ -45,7 +45,7 @@ export default function BetInputForm() {
             }
         }
         calcJuiceToWin()}, [priceDropValue, wagered, toWin])
-
+/*
     const handleWagerChange = (e) => {                  
         setWagered(e.target.value); 
     }
@@ -53,6 +53,7 @@ export default function BetInputForm() {
     const handleToWinChange = (e) => {
         setToWin(e.target.value);
     }
+*/
     const handleWinWager = (e) => {
         console.log('etargetname', e.target.name);
         if (e.target.name === 'win') {
@@ -65,7 +66,6 @@ export default function BetInputForm() {
         }
     }
     function calcWager (e) {
-        if(wagered !== (e.target.value/((priceDropValue/100))) || (wagered!== (e.target.value*(priceDropValue/100)))) {
             if(priceDropValue>0) {
             let wagerPlus = (e.target.value/(priceDropValue/100));
             return wagerPlus;
@@ -74,7 +74,6 @@ export default function BetInputForm() {
             let wagerMinus = (e.target.value * ((priceDropValue/100)*-1));
             return wagerMinus;
             }
-        }
     }
     function calcWin (e) {
         if (priceDropValue<0) {
