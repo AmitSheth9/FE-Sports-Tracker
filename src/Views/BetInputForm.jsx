@@ -11,7 +11,7 @@ export default function BetInputForm() {
     const [spreadDropValue, setSpreadDropValue] = useState(-3)
     const [totalDropValue, setTotalDropValue ] = useState('');
     const [team, setTeam] = useState('');
-    const [wagered, setWagered] = useState(100);
+    const [wagered, setWagered] = useState(105);
     const [toWin, setToWin] = useState(100);
     const [rotationNum, setRotationNum] = useState('');
     const [priceDropValue, setPriceDropValue] = useState(-105);
@@ -22,12 +22,14 @@ export default function BetInputForm() {
     const [overUnder, setOverUnder] = useState('');
     const [gamePart, setGamePart] =useState('Game');
 
-    console.log('firstdropvalue', firstDropValue);
-    console.log('sportDropValue', sportDropValue)
-    console.log('spreadDropValue', spreadDropValue);
-    console.log('totalDropVal', totalDropValue)
-    console.log('priceDropValue', priceDropValue);
-    console.log('date submit', dateSubmit)
+    //console.log('firstdropvalue', firstDropValue);
+    //console.log('sportDropValue', sportDropValue)
+    //console.log('spreadDropValue', spreadDropValue);
+    //console.log('totalDropVal', totalDropValue)
+    //console.log('priceDropValue', priceDropValue);
+    //console.log('date submit', dateSubmit)
+    console.log('wagered', wagered)
+    console.log('win', toWin)
 
     useEffect(() => {
         function calcJuiceToWin () {
@@ -50,6 +52,40 @@ export default function BetInputForm() {
 
     const handleToWinChange = (e) => {
         setToWin(e.target.value);
+    }
+    const handleWinWager = (e) => {
+        console.log('etargetname', e.target.name);
+        if (e.target.name === 'win') {
+            setToWin(e.target.value);
+            setWagered(calcWager(e));
+        }
+        else if (e.target.name === 'wager') {
+            setWagered(e.target.value);
+            setToWin(calcWin(e));
+        }
+    }
+    function calcWager (e) {
+        if(wagered !== (e.target.value/((priceDropValue/100))) || (wagered!== (e.target.value*(priceDropValue/100)))) {
+            if(priceDropValue>0) {
+            let wagerPlus = (e.target.value/(priceDropValue/100));
+            return wagerPlus;
+            }
+            else if (priceDropValue<0) {
+            let wagerMinus = (e.target.value * ((priceDropValue/100)*-1));
+            return wagerMinus;
+            }
+        }
+    }
+    function calcWin (e) {
+        if (priceDropValue<0) {
+            let winMinus = ((e.target.value)/((priceDropValue/100)*-1));
+            return winMinus;
+        
+        }
+        else if(priceDropValue>0) {
+            let winPlus =((e.target.value)*(priceDropValue/100));
+            return winPlus;
+        }
     }
     const changeDate = (event) => {
         setDateBet(event.toDate()) 
@@ -113,7 +149,7 @@ return (
             <select
                 value={gamePart}
                 onChange={(e) => setGamePart(e.target.value)}>
-                <option value='Game'>Gm</option>   
+                <option value='Game'>GM</option>   
                 <option value='1H'>1H</option>
                 <option value='2H'>2H</option>
                 </select>
@@ -188,11 +224,11 @@ return (
             }
             })()}
         </div>
-        <label className='win-wagered'> Amount to Win
-        <input value={toWin} onChange={handleToWinChange}/>
-        </label>
         <label className='win-wagered'> Amount Wagered
-        <input value={wagered} onChange={handleWagerChange} />
+        <input name='wager' value={wagered} onChange={handleWinWager} />
+        </label>
+        <label className='win-wagered'> Amount to Win
+        <input name='win' value={toWin} onChange={handleWinWager}/>
         </label>
         <br/>
         <label className='result'>Win/Lose/Push
