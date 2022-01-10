@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import { mlArr, spreadArr, totalArr, juiceArr } from '../HelperStuff';
+import { mlArr, spreadArr, totalArr, juiceArr } from '../../HelperStuff';
 import Datetime from 'react-datetime';
-import { nflArr, nbaArr } from '../SportTeams';
+import { nflArr, nbaArr } from '../../SportTeams';
 import "react-datetime/css/react-datetime.css";
 import './betinputform.css';
+import { Link } from 'react-router-dom';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
@@ -287,6 +288,10 @@ return (
         </label>
         <button type='submit'>Submit Bet</button>
     </form>
+    <div>
+        <Link to='/signup'>Signup</Link><br/>
+        <Link to='/login'>Login</Link>
+    </div>
 </div>
     )
 }

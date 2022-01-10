@@ -1,12 +1,28 @@
 
 import './App.css';
-import BetInputForm from './Views/BetInputForm';
-
+import BetInputForm from './Views/BetForm/BetInputForm';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from './Views/Auth/Login';
+import Signup from './Views/Auth/Signup';
 function App() {
   return (
-    <div className="App">
-      <BetInputForm />
-    </div>
+
+
+    <Router>
+      <Switch>
+        <Route exact path = '/'>
+          <BetInputForm/>
+        </Route>
+        <Route path = '/login'>
+          <Login />
+        </Route>
+        <Route path='/signup'>
+          <Signup />
+        </Route>
+      </Switch>
+    </Router>
+      
+    
   );
 }
 
