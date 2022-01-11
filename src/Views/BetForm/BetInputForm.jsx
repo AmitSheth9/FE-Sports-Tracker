@@ -5,6 +5,8 @@ import { nflArr, nbaArr } from '../../SportTeams';
 import "react-datetime/css/react-datetime.css";
 import './betinputform.css';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../context/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
@@ -22,6 +24,8 @@ export default function BetInputForm() {
     const [dateSubmit, setDateSubmit] = useState();
     const [overUnder, setOverUnder] = useState('');
     const [gamePart, setGamePart] =useState('Game');
+    const auth = useUser();
+    const history = useHistory();
 
     //console.log('firstdropvalue', firstDropValue);
     //console.log('sportDropValue', sportDropValue)
@@ -118,10 +122,17 @@ export default function BetInputForm() {
             betDate: dateBet,
             notes: notes,
             submitDate: dateSubmit,
+            username: auth.username
         }
         console.log(betObject);
     }
+
+    const handleLogout = () => {
+        auth.setUsername('');
+        history.replace('/login');
+    }
 return (
+<div>You are logged in as {auth.username}
 <div >
     <form className="form-container" onSubmit={handleSubmit}>
         <label className='sport'> Sport
@@ -217,7 +228,7 @@ return (
                         value={priceDropValue} 
                         onChange={(e) => setPriceDropValue(e.target.value)}>
                         {mlArr.map((num => {
-                            return <option value={num}>{num}</option>
+                            return <option key={num} value={num}>{num}</option>
                         }))}
                     </select>
                     </label>  )
@@ -288,10 +299,13 @@ return (
         </label>
         <button type='submit'>Submit Bet</button>
     </form>
-    <div>
-        <Link to='/signup'>Signup</Link><br/>
-        <Link to='/login'>Login</Link>
-    </div>
+   
+</div>
+ <p>
+ <Link to='/signup'>Signup</Link><br/>
+ <Link to='/login'>Login</Link><br/>
+ <button onClick={handleLogout}>Logout</button>
+</p>
 </div>
     )
 }

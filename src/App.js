@@ -4,10 +4,12 @@ import BetInputForm from './Views/BetForm/BetInputForm';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Views/Auth/Login';
 import Signup from './Views/Auth/Signup';
+import { UserProvider } from './context/AuthContext'
+
 function App() {
   return (
 
-
+<UserProvider>
     <Router>
       <Switch>
         <Route exact path = '/'>
@@ -21,6 +23,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+</UserProvider>
       
     
   );

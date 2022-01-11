@@ -3,22 +3,25 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { logIn } from '../../services/fetch-utils';
 import { useHistory } from 'react-router-dom';
+import { useUser } from '../../context/AuthContext';
+
 export default function Login() {
 const history = useHistory();
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 const [errorx, setErrorX] = useState('');
+const auth = useUser();
 
 const handleSubmit = async (e) =>{
     try{
     e.preventDefault();
     let obj = { username, password};
-    const response = await logIn(obj);
-    const respStr = await JSON.stringify(response);
-    console.log(respStr);
-    console.log(response);
-    history.replace('/');
-    //so because only allows to proceed if correct un/pw is given can assume if site doesn't break and goes to '/' user is authorized. next step is to fill out form and get that data back and post it to mongodb database with username of current user. each user will have own collection?
+    const res = await logIn(obj);
+    console.log(res.text);
+    if(res.text === 'login success') {
+        auth.setUsername(username);
+        history.replace('/');
+    }
     }catch(err) {
     setErrorX(err.message);
     }
