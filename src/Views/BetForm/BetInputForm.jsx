@@ -7,6 +7,7 @@ import './betinputform.css';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
+import { postBetForm } from '../../services/fetch-utils';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
@@ -125,6 +126,9 @@ export default function BetInputForm() {
             username: auth.username
         }
         console.log(betObject);
+        const response = await postBetForm(betObject);
+        console.log(response);
+
     }
 
     const handleLogout = () => {
