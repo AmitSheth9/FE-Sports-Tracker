@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signUp } from '../../services/fetch-utils';
 import { Link, useHistory } from 'react-router-dom';
 //import { useUser } from '../../context/AuthContext';
@@ -9,13 +9,22 @@ export default function Signup() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
     const [error, setError] = useState('');
+    const [signupDate, setSignupDate] = useState('');
     //const auth = useUser();
 
+    const getDate = () => {
+        let currentDate = new Date().toLocaleString();
+        setSignupDate(currentDate);
+    }
+
+    useEffect(() => {
+        getDate();
+    }, [])
 
     const handleSubmit = async (e) => {
         try{
         e.preventDefault();
-        let obj = { username: username, password: password };
+        let obj = { username: username, password: password, date: signupDate };
         console.log(obj);
         const response = await signUp(obj);
         console.log(response.text);
