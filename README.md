@@ -1,3 +1,16 @@
+
+BetAnalysis View
+Show number of bets
+Show Win PCT
+Show Number of Wins and Losses
+Show Money won/lost
+How many totals, spread, moneylines
+
+Average juice
+Average wagered
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

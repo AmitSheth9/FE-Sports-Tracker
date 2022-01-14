@@ -28,12 +28,6 @@ export default function BetInputForm() {
     const auth = useUser();
     const history = useHistory();
 
-    //console.log('firstdropvalue', firstDropValue);
-    //console.log('sportDropValue', sportDropValue)
-    //console.log('spreadDropValue', spreadDropValue);
-    //console.log('totalDropVal', totalDropValue)
-    //console.log('priceDropValue', priceDropValue);
-    //console.log('date submit', dateSubmit)
     console.log('wagered', wagered)
     console.log('win', toWin)
 
@@ -51,15 +45,7 @@ export default function BetInputForm() {
             }
         }
         calcJuiceToWin()}, [priceDropValue, wagered, toWin])
-/*
-    const handleWagerChange = (e) => {                  
-        setWagered(e.target.value); 
-    }
 
-    const handleToWinChange = (e) => {
-        setToWin(e.target.value);
-    }
-*/
     const handleWinWager = (e) => {
         console.log('etargetname', e.target.name);
         if (e.target.name === 'win') {
@@ -309,6 +295,7 @@ return (
  <Link to='/signup'>Signup</Link><br/>
  <Link to='/login'>Login</Link><br/>
  <button onClick={handleLogout}>Logout</button>
+ <Link to='/betdata'>Bet Data</Link>
 </p>
 </div>
     )

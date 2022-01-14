@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Views/Auth/Login';
 import Signup from './Views/Auth/Signup';
 import { UserProvider } from './context/AuthContext'
+import BetData from './Views/BetAnalysis/BetData';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Switch>
         <Route exact path = '/'>
           <BetInputForm/>
+        </Route>
+        <Route path='/betdata' >
+          <BetData />
         </Route>
         <Route path = '/login'>
           <Login />

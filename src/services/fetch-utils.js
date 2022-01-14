@@ -21,3 +21,8 @@ export async function postBetForm(obj) {
     .send(obj);
     return response;
 }
+export async function getBetData(username) {
+    const response = await request
+    .get(`${URL}/betdata/${username}`);
+    return response;
+}
