@@ -4,10 +4,24 @@ import { getBetData } from '../../services/fetch-utils'
 import { useUser } from '../../context/AuthContext';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import './BetData.css'
+import { betDistributionAnalysis } from '../../services/handleData';
+import { sumWageredandWin } from '../../services/handleData';
 
 export default function BetData() {
     const [betData, setBetData] = useState([]);
     const [netResult, setNetResult] = useState(0);
+    //const [wins, setWins] = useState(0);
+    //const [losses, setLosses] = useState(0);
+    //const [pushes, setPushes] = useState(0);
+    const [winPercentage, setWinPercentage] = useState(0);
+    const [spreadPct, setSpreadPct] = useState(0);
+    const [totalsPct, setTotalsPct] = useState(0);
+    const [mlPct, setMlPct] = useState(0);
+    const [spreadWinPct, setSpreadWinPct] = useState(0);
+    const [totalWinPct, setTotalWinPct] = useState(0);
+    const [mlWinPct, setMlWinPct] = useState(0);
+    const [wagerSum, setWagerSum] = useState(0);
+    const [winSum, setWinSum] = useState(0);
     const auth = useUser();
 
     useEffect(() => {
@@ -23,57 +37,126 @@ export default function BetData() {
 
     useEffect(() => {
        
-        sumResult(betData);}, [betData])
-   
-    const handleClick = async () => {
-            
-        let data = await getBetData(auth.username)
-        setBetData(data.body);
-    
-    }
+        handleData(betData);}, [betData])
 
-    const sumResult = (betData) => {
+    useEffect(() => {
+        betDistributionAnalysis(betData, setSpreadWinPct, setTotalWinPct, setMlWinPct);}, [betData])
+   
+    useEffect(() => {
+        sumWageredandWin(betData, setWagerSum, setWinSum)
+    },[betData])
+    const handleData = (betData) => {
         let sum = 0;
+        let w = 0;
+    
+        let spreadBets = 0;
+        let totalBets = 0;
+        let mlBets = 0;
        for( let i = 0; i<betData.length; i++) {
+           if(betData[i].betType === 'Spread'){spreadBets++}
+           if(betData[i].betType === 'Total'){totalBets++}
+           if(betData[i].betType === 'Moneyline'){mlBets++}
            if (betData[i].result === 'Win') {
                sum = sum + betData[i].win;
+               w++;
            }
            if(betData[i].result === 'Lose') {
-               sum = sum - betData[i].wager
+               sum = sum - betData[i].wager;
+               
+           }
+           if(betData[i].result === 'Push') {
+               
            }
            
        }
-       console.log(sum);
-       setNetResult(sum);
-       return sum;
+        let winP = Number(((w/betData.length)*100).toFixed(2));
+            setWinPercentage(winP);
+           
+            setSpreadPct(Number(((spreadBets/betData.length) *100).toFixed(2)))
+            setTotalsPct(Number((totalBets/betData.length).toFixed(2)) *100)
+            setMlPct(Number((mlBets/betData.length).toFixed(2)) *100)
+           
+           console.log(sum);
+           setNetResult(sum);
+           return sum;
+          
+        }
       
-    }
     console.log(auth.username)
     console.log(betData)
+    console.log(spreadWinPct);
     return (
 
 
         <div>
             {auth.username}
-            <button onClick={handleClick}>Submit</button>
-            <div className = 'summary'>{auth.username}, You placed {betData.length} bets with a net result of ${netResult}</div>
-            {auth.username && <div className='all-container'>
+            <div className = 'summary'>
+            <div>{betData.length} bets placed with a net result of ${Number(netResult.toFixed(2))}
+            </div>
+            <div>Win Percentage: {winPercentage}%</div>
+            
+            </div>
+            
+            <div>
+            <table>
+            
+                
+                    <tr>
+                        <th>Date</th>
+                        <th>Result</th>
+                        <th>Bet Type</th>
+                        <th>Spread</th>
+                        <th>Wagered</th>
+                        <th>To Win</th>
+                        <th>Net</th>
+                    </tr>
+
+                
          {betData.map((bet) => {
                 return (
-                    <div className='bet-container' key={bet._id}>
-                    {bet.betDate ? <p>{bet.betDate}</p> : <p>{bet.submitDate}</p>}<br/>
-                    <p>Result: {bet.result}</p>
-                    <p>Bet Type: {bet.betType}</p>
-                    <p>Spread: {bet.spread}</p>
-                    <p>Wagered: {bet.wager}</p>
-                    <p>To Win: {bet.win}</p>
-                    {bet.result === "Win" ? <p>Amount won : {bet.win}</p> : ''}
-                    {bet.result === "Lose" ? <p>Amount Lost : -{bet.wager}</p> : ''}
-                    
-                    </div>
+                    <tr className='beta-container' key={bet._id}>
+                        
+                    {bet.betDate ? <td>{bet.betDate.slice(0 , 10)}</td> : <td>{bet.submitDate.slice(0,10)}</td>}
+                    <td>{bet.result}</td>
+                    <td>{bet.betType}</td>
+                    <td>{bet.spread}</td>
+                    <td>{Number(bet.wager.toFixed(2))}</td>
+                    <td>{Number(bet.win.toFixed(2))}</td>
+                    {bet.result === "Win" ? <td>{Number(bet.win.toFixed(2))}</td> : ''}
+                    {bet.result === "Lose" ? <td>-{Number(bet.wager.toFixed(2))}</td> : ''}
+                    </tr>
+                   
             )})}
-            </div> }
-            <Link to='/'>Bet Form</Link>
+           
+            <tr>
+                <td></td>
+                <td>{winPercentage}%</td>
+                <td></td>
+                <td></td>
+                <td>{wagerSum}</td>
+                <td>{winSum}</td>
+                <td>{Number(netResult.toFixed(2))}</td>
+
+                    
+
+
+            </tr>
+            </table>
+            </div>
+            <div className='analysis-container'>Bet Distribution Analysis
+            <div className= 'bet-distribution'>
+
+                <p className='dist-data'>Spread Bets: {spreadPct}%</p> 
+                <p className='dist-data'>Total Bets: {totalsPct}%</p> 
+                <p className='dist-data'>Moneyline Bets: {mlPct}%</p> 
+            </div>
+            <div className='distribution-analysis'>
+                <p className='dist-data'>Spread Bets Win Pct: {spreadWinPct}%</p>
+                <p className='dist-data'>Total Bets Win Pct: {totalWinPct}%</p>
+                <p className='dist-data'>Moneyline Bets Win Pct: {mlWinPct}%</p>
+            </div>
+            </div>
+            <p><Link to='/'>Bet Form</Link></p>
         </div>
     )
 }

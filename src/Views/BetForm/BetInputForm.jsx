@@ -125,6 +125,8 @@ export default function BetInputForm() {
         console.log(betObject);
         const response = await postBetForm(betObject);
         console.log(response);
+        alert('Bet Submitted');
+        history.replace('/betdata')
 
     }
 
