@@ -1,0 +1,18 @@
+body {
+    background-color: beige;
+}
+.bet-container {
+    display: flex;
+    margin-bottom: -5px;
+}
+p {
+    border: 2px solid brown;
+    padding: 5px;
+    color: black;
+    font-weight: 900;
+    background-color: lightskyblue;
+}
+.summary {
+    font-weight: 900;
+    color: brown;
+}

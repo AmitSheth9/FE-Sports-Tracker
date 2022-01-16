@@ -16,9 +16,10 @@ label {
     margin: 5px;
     color: black;
     font-weight: 1000;
-    background-color: lightgreen;
+    background-color: lightskyblue;
     width:100px;
-    border: 5px solid white;
+    border: 5px solid brown;
+    padding: 5px;
 }
 
 select {
@@ -61,12 +62,16 @@ font-size: 19px;
 .div-spread {
     width: 100%;
     justify-content: space-evenly;
+    margin-top: 15px;
+}
+.div-total {
+    margin-top: 15px;
 }
 .div-conditional-container {
     display: flex;
-    height: 50px;
-    background-color:lightgreen;
-    border: 5px solid white;
+    height: 60px;
+    background-color:lightskyblue;
+    border: 5px solid brown;
     margin-bottom: 25px;
     justify-content: space-evenly;
 
@@ -115,8 +120,8 @@ button {
 .row-two {
     display: flex;
     width: 100%;
-    background-color: lightgreen;
-    border: 5px solid white;
+    background-color: lightskyblue;
+    border: 5px solid brown;
     height: 50px;
     margin-bottom: 20px;
     justify-content: space space-evenly;

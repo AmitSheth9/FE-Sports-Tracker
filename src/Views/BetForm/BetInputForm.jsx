@@ -25,6 +25,7 @@ export default function BetInputForm() {
     const [dateSubmit, setDateSubmit] = useState();
     const [overUnder, setOverUnder] = useState('');
     const [gamePart, setGamePart] =useState('Game');
+    const [netAmount, setNetAmount] = useState('');
     const auth = useUser();
     const history = useHistory();
 
@@ -93,6 +94,15 @@ export default function BetInputForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(resultValue === 'Win') {
+            setNetAmount(toWin);
+        }
+        if(resultValue === 'Lose') {
+            setNetAmount((wagered)*(-1))
+        }
+        if(resultValue === 'Push'){
+            setNetAmount(0);
+        }
         const betObject = {
             sport: sportDropValue,
             betType: firstDropValue,
@@ -109,6 +119,7 @@ export default function BetInputForm() {
             betDate: dateBet,
             notes: notes,
             submitDate: dateSubmit,
+            netAmount: netAmount,
             username: auth.username
         }
         console.log(betObject);
