@@ -1,6 +1,6 @@
 
 
-export function handleData(betData, setSpreadPct, setTotalsPct, setMlPct, setWinPercentage, setNetResult) {
+/*export function handleData(betData, setSpreadPct, setTotalsPct, setMlPct, setWinPercentage, setNetResult) {
     let sum = 0;
     let w = 0;
 
@@ -37,7 +37,7 @@ export function handleData(betData, setSpreadPct, setTotalsPct, setMlPct, setWin
        return sum;
       
     }
-
+*/
  export function betDistributionAnalysis(betData, setSpreadWinPct, setTotalWinPct, setMlWinPct ){
      let spreadWin = 0;
      let spreadLoss = 0;
@@ -98,3 +98,10 @@ export function handleData(betData, setSpreadPct, setTotalsPct, setMlPct, setWin
     setWagerSum(Number(wageredSum.toFixed(2)));
     setWinSum(Number(winSum.toFixed(2)));
  }
+
+
+ //average wager amount
+ //past 30days, 60 days, year ---backend
+ //by sport ===backend
+//move sport back to center of form
+//
