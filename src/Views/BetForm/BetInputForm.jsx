@@ -304,11 +304,12 @@ return (
     </form>
    
 </div>
- <p>
- <Link to='/signup'>Signup</Link><br/>
- <Link to='/login'>Login</Link><br/>
+ <p className='link-container'>
+ <Link className='link' to='/signup'>Signup</Link><br/>
+ <Link className='link' to='/login'>Login</Link><br/>
+ <Link className='link' to='/change-password'>ChangePW</Link><br/>
+ <Link className='link' to='/betdata'>Bet Data</Link>
  <button onClick={handleLogout}>Logout</button>
- <Link to='/betdata'>Bet Data</Link>
 </p>
 </div>
     )

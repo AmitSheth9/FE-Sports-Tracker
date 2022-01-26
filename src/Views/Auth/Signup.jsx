@@ -38,23 +38,30 @@ export default function Signup() {
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Signup</legend>
-                    <label htmlFor='username'>Email
-                        <input
+                    <label 
+                    className='label'
+                    htmlFor='username'>Email
+                        <input 
+                        className='input'
                         name='username' 
                         value={username}
                         onChange={(e)=> setUsername(e.target.value)}/>
                     </label>
-                    <label htmlFor='password'>Password
+                    <label 
+                    className='label'
+                    htmlFor='password'>Password
                         <input 
+                        className='input'
                         name='password'
                         value={password}
                         onChange={(e)=> setPassword(e.target.value)}/>
                     </label>
                     <button type='submit'>Submit</button>
                 </fieldset>
-            </form>
-            <Link to='/login'>Login</Link>
+            </form><br/>
+            <Link className='link' to='/login'>Login</Link>
             {error && <p>{error.message}</p>}
+            <Link className='link' to='/'>BetForm</Link>
         </div>
     )
 }

@@ -14,6 +14,12 @@ export async function logIn(obj) {
     .send(obj);
     return response;
 }
+export async function changePW(obj) {
+    const response = await request
+    .post(`${URL}/change-password`)
+    .send(obj);
+    return response;
+}
 
 export async function postBetForm(obj) {
     const response = await request

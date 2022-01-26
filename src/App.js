@@ -6,6 +6,7 @@ import Login from './Views/Auth/Login';
 import Signup from './Views/Auth/Signup';
 import { UserProvider } from './context/AuthContext'
 import BetData from './Views/BetAnalysis/BetData';
+import ChangePW from './Views/Auth/ChangePW';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path='/signup'>
           <Signup />
+        </Route>
+        <Route path = '/change-password'>
+          <ChangePW />
         </Route>
       </Switch>
     </Router>

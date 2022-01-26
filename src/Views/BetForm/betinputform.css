@@ -111,11 +111,12 @@ font-size: 19px;
     margin-top: 0px;
 }
 button {
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 10px;
     padding: 5px;
     width: 20%;
     cursor: pointer;
+    border-radius: 8px;
 }
 .row-two {
     display: flex;
@@ -125,4 +126,13 @@ button {
     height: 50px;
     margin-bottom: 20px;
     justify-content: space space-evenly;
+}
+.link {
+    border: 1px solid brown;
+    font-size: 15px;
+    border-radius: 8px;
+    background-color:  lightgray;
+}
+.link-container {
+    display: flex;
 }

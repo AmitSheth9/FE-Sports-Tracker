@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { logIn } from '../../services/fetch-utils';
 import { useHistory } from 'react-router-dom';
 import { useUser } from '../../context/AuthContext';
+import './Auth.css'
 
 export default function Login() {
 const history = useHistory();
@@ -32,23 +33,30 @@ const handleSubmit = async (e) =>{
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Login</legend>
-                    <label htmlFor='username'>Email
+                    <label 
+                    className='label'
+                    htmlFor='username'>Email
                         <input 
+                        className='input'
                         name='username'
                         value={username}
                         onChange={(e)=> setUsername(e.target.value)}/>
                     </label>
-                    <label htmlFor='password'>Password
+                    <label 
+                    className='label'
+                    htmlFor='password'>Password
                         <input
+                        className='input'
                         name='password' 
                         value={password}
                         onChange={(e)=> setPassword(e.target.value)}/>
                     </label>
                     <button type='submit'>Submit</button>
                 </fieldset>
-            </form>
+            </form><br/>
             <div>
-                <Link to='/signup'>Signup</Link>
+                <Link className='link' to='/signup'>Signup</Link>
+                <Link className='link' to='/'>BetForm</Link>
             </div>
             <div>
                 {errorx && <p>{errorx}</p>}
