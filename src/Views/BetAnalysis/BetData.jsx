@@ -23,11 +23,13 @@ export default function BetData() {
     const [wagerSum, setWagerSum] = useState(0);
     const [winSum, setWinSum] = useState(0);
     const auth = useUser();
+    const [recentBets, setRecentBets] = useState([]);
 
     useEffect(() => {
        const onMount = async () => {
             let data = await getBetData(auth.username)
-            setBetData(data.body);  
+            setBetData(data.body[0]);
+            setRecentBets(data.body[1]);  
         }    
         if(auth.username){onMount()}}, [auth.username])
 
@@ -139,6 +141,16 @@ export default function BetData() {
                     <p className='dist-data'>Spread Bets Win Pct: {spreadWinPct}%</p>
                     <p className='dist-data'>Total Bets Win Pct: {totalWinPct}%</p>
                     <p className='dist-data'>Moneyline Bets Win Pct: {mlWinPct}%</p>
+                </div>
+                <div>
+                    {recentBets.map((bet)=>{
+                        return (
+                            <div>
+                            <div>{bet.submitDate}</div>
+                            <div>{bet.result}</div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
             <p class='link-betform'><Link to='/'>Bet Form</Link></p>
