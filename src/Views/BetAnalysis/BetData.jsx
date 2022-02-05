@@ -23,6 +23,7 @@ export default function BetData() {
     const [wagerSum, setWagerSum] = useState(0);
     const [winSum, setWinSum] = useState(0);
     const auth = useUser();
+    // eslint-disable-next-line no-unused-vars
     const [recentBets, setRecentBets] = useState([]);
 
     useEffect(() => {
