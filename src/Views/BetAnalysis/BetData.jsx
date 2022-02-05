@@ -143,7 +143,7 @@ export default function BetData() {
                     <p className='dist-data'>Moneyline Bets Win Pct: {mlWinPct}%</p>
                 </div>
                 <div>
-                    {recentBets.map((bet)=>{
+                   {/* {recentBets.map((bet)=>{
                         return (
                             <div>
                             <div>{bet.submitDate}</div>
@@ -151,6 +151,7 @@ export default function BetData() {
                             </div>
                         )
                     })}
+                */}
                 </div>
             </div>
             <p class='link-betform'><Link to='/'>Bet Form</Link></p>
