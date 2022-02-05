@@ -135,7 +135,9 @@ export default function BetInputForm() {
         history.replace('/login');
     }
 return (
-<div>You are logged in as {auth.username}
+<div>{auth.username ? 
+    <p>You are logged in as {auth.username}</p> : 
+    <p>You are not logged in</p>}
 <div >
     <form className="form-container" onSubmit={handleSubmit}>
         <label className='sport'> Sport
@@ -304,7 +306,7 @@ return (
     </form>
    
 </div>
- <p className='link-container'>
+<p className='link-container'>
  <Link className='link' to='/signup'>Signup</Link><br/>
  <Link className='link' to='/login'>Login</Link><br/>
  <Link className='link' to='/change-password'>ChangePW</Link><br/>

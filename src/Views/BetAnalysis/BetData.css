@@ -69,3 +69,7 @@ legend {
     width: 15%;
     border-radius: 8px;
 }
+.nobets {
+    font-weight: 800;
+    font-size: 15px;
+}

@@ -47,7 +47,6 @@ export default function BetData() {
     const handleData = (betData) => {
             let sum = 0;
             let win = 0;
-    
             let spreadBets = 0;
             let totalBets = 0;
             let mlBets = 0;
@@ -60,16 +59,11 @@ export default function BetData() {
                win++;
            }
            if(betData[i].result === 'Lose') {
-               sum = sum - betData[i].wager;
-               
+               sum = sum - betData[i].wager;  
            }
-           if(betData[i].result === 'Push') {
-               
-           } 
         }
-        let winP = Number(((win/betData.length)*100).toFixed(2));
-        setWinPercentage(winP);
-           
+        let winPerct = Number(((win/betData.length)*100).toFixed(2));
+        setWinPercentage(winPerct);
         setSpreadPct(Number(((spreadBets/betData.length) *100).toFixed(2)))
         setTotalsPct(Number((totalBets/betData.length).toFixed(2)) *100)
         setMlPct(Number((mlBets/betData.length).toFixed(2)) *100)
@@ -78,15 +72,17 @@ export default function BetData() {
         return sum;
         }
       
-    console.log(auth.username)
-    console.log(betData)
-    console.log(spreadWinPct);
     return (
 
 
-        <div>{auth.username}
+        <div>
+            {auth.username ? 
+            <p>Logged in as {auth.username}</p> : 
+            <p>Not logged in</p>}
+            {!betData.length && 
+            <div className = 'nobets'>You have not submitted any bets to track. Submit a bet in the <Link to='/'>BetForm</Link></div>}
             <div className = 'summary'>
-                <div className='heading'>Bets Placed: {betData.length}</div>
+                <div className='heading'>Bets Tracked: {betData.length}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
                 <div className='heading'>Win percentage: {winPercentage}</div>
             </div>

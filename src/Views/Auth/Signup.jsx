@@ -29,6 +29,7 @@ export default function Signup() {
         const response = await signUp(obj);
         console.log(response.text);
         history.replace('/login');
+        alert('You have succesfully signed up for Bettracker. Please login with your credentials')
         }catch (err){
             setError(err.message)
         }
