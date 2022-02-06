@@ -134,10 +134,13 @@ export default function BetInputForm() {
         history.replace('/login');
     }
 return (
-<div>{auth.username ? 
+<div>
+    
+    {auth.username ? 
     <p>You are logged in as {auth.username}</p> : 
     <p>You are not logged in</p>}
-    <p className = 'betmessage'>Enter your bet details below. All fields are optional. The more data you give the better the analysis</p>
+    <p>Welcome to Bettracker. The purpose of this site is to give sports bettors a place to track their bets and obtain useful data about their betting patterns.  Submit your bet details below and then view analysis <Link to='/betdata'>here</Link> </p>
+    <p className = 'betmessage'>Enter your bet details below. All fields are optional. The more data the better the analysis</p>
 <div >
     <form className="form-container" onSubmit={handleSubmit}>
         <label className='sport'> Sport
