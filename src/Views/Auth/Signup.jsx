@@ -53,6 +53,7 @@ export default function Signup() {
                     htmlFor='password'>Password
                         <input 
                         className='input'
+                        type='password'
                         name='password'
                         value={password}
                         onChange={(e)=> setPassword(e.target.value)}/>

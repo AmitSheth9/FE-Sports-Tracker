@@ -129,7 +129,6 @@ export default function BetInputForm() {
         history.replace('/betdata')
 
     }
-
     const handleLogout = () => {
         auth.setUsername('');
         history.replace('/login');
@@ -138,6 +137,7 @@ return (
 <div>{auth.username ? 
     <p>You are logged in as {auth.username}</p> : 
     <p>You are not logged in</p>}
+    <p className = 'betmessage'>Enter your bet details below. All fields are optional. The more data you give the better the analysis</p>
 <div >
     <form className="form-container" onSubmit={handleSubmit}>
         <label className='sport'> Sport
@@ -311,7 +311,7 @@ return (
  <Link className='link' to='/login'>Login</Link><br/>
  <Link className='link' to='/change-password'>ChangePW</Link><br/>
  <Link className='link' to='/betdata'>Bet Data</Link>
- <button onClick={handleLogout}>Logout</button>
+ {auth.username && <button onClick={handleLogout}>Logout</button>}
 </p>
 </div>
     )

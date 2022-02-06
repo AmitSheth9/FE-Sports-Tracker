@@ -60,16 +60,36 @@ td {
 }
 table {
     margin-left: 10%;
+    background-color: lightskyblue;
 }
 legend {
     font-size: 24px;
+    font-weight: 700;
     
 }
 .link-betform{
     width: 15%;
     border-radius: 8px;
+    background-color: lightgray;
 }
 .nobets {
     font-weight: 800;
     font-size: 15px;
+}
+.link {
+    border: 1px solid brown;
+    border-radius: 8px;
+    background-color:  lightgray;
+    
+}
+.link-container {
+    display: flex;
+}
+button {
+    font-size: 15px;
+    margin-top: 10px;
+    padding: 5px;
+    width: 10%;
+    cursor: pointer;
+    border-radius: 8px;
 }

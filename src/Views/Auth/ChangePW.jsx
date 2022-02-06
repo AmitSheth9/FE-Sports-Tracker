@@ -45,6 +45,7 @@ export default function ChangePW() {
                     htmlFor='password'>Password
                         <input 
                         className='input'
+                        type='password'
                         name='password'
                         value={password}
                         onChange={(e)=> setPassword(e.target.value)}/>
@@ -54,6 +55,7 @@ export default function ChangePW() {
                     htmlFor='confirm'>Confirm PW
                         <input
                         className='input'
+                        type='password'
                         name='confirm' 
                         value={confirmPW}
                         onChange={(e)=> setConfirmPW(e.target.value)}/>
@@ -62,6 +64,7 @@ export default function ChangePW() {
                 </fieldset>
             </form><br/>
             <div>
+                <Link className='link' to='/login'>Login</Link>
                 <Link className='link' to='/signup'>Signup</Link>
                 <Link className='link' to='/'>BetForm</Link>
             </div>

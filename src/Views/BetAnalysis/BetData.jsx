@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { getBetData } from '../../services/fetch-utils'
 import { useUser } from '../../context/AuthContext';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom'
 import './BetData.css'
 import { betDistributionAnalysis } from '../../services/handleData';
 import { sumWageredandWin } from '../../services/handleData';
@@ -25,6 +25,7 @@ export default function BetData() {
     const auth = useUser();
     // eslint-disable-next-line no-unused-vars
     const [recentBets, setRecentBets] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
        const onMount = async () => {
@@ -70,6 +71,10 @@ export default function BetData() {
         console.log(sum);
         setNetResult(sum);
         return sum;
+        }
+    const handleLogout = () => {
+        auth.setUsername('');
+        history.replace('/login');
         }
       
     return (
@@ -151,7 +156,12 @@ export default function BetData() {
                 */}
                 </div>
             </div>
-            <p class='link-betform'><Link to='/'>Bet Form</Link></p>
+            <p className = 'link-container'>
+            <Link className='link' to='/signup'>Signup</Link><br/>
+            <Link className='link' to='/login'>Login</Link><br/>
+            <Link className='link' to='/'>Add another bet</Link>
+            {auth.username && <button onClick={handleLogout}>Logout</button>}
+            </p>
         </div>
     )
 }

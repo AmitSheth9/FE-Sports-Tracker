@@ -117,6 +117,7 @@ button {
     width: 20%;
     cursor: pointer;
     border-radius: 8px;
+    background-color: lightgray;
 }
 .row-two {
     display: flex;
@@ -135,4 +136,7 @@ button {
 }
 .link-container {
     display: flex;
+}
+.betmessage {
+    color: brown;
 }
