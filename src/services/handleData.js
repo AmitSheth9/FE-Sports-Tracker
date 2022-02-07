@@ -57,6 +57,7 @@
             spreadLoss++;
         }
         if(betData[i].betType === 'Spread' && betData[i].result === 'Push') {
+            // eslint-disable-next-line no-unused-vars
             spreadPush++;
         }
         if(betData[i].betType === 'Total' && betData[i].result === 'Win' )
@@ -67,6 +68,7 @@
             totalLoss=totalLoss+1;
         }
         if(betData[i].betType === 'Total' && betData[i].result === 'Push') {
+            // eslint-disable-next-line no-unused-vars
             totalPush++;
         }
         if(betData[i].betType === 'Moneyline' && betData[i].result === 'Win' )
@@ -77,6 +79,7 @@
             mlLoss++;
         }
         if(betData[i].betType === 'Moneyline' && betData[i].result === 'Push') {
+            // eslint-disable-next-line no-unused-vars
             mlPush++;
         }
      }
