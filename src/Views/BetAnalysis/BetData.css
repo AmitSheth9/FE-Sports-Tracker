@@ -1,12 +1,12 @@
 body {
-    background-color: lightgray;
+    background-color: black;
 }
 .bet-container {
     display: flex;
     margin-bottom: -5px;
 }
 p {
-    border: 1px solid brown;
+    border: 1px solid teal;
     padding: 5px;
     color: black;
     font-weight: 900;
@@ -21,12 +21,12 @@ p {
     margin-left: 5%;
 }
 th {
-    border: 1px solid brown;
+    border: 1px solid teal;
     font-weight: 900;
     padding: 5px;
 }
 td {
-    border: 1px solid brown;
+    border: 1px solid teal;
     font-weight: 600;
     padding: 8px;
     font-size:20px;
@@ -47,7 +47,7 @@ td {
     height:110%;
 }
 .heading {
-    border: 1px solid brown;
+    border: 1px solid teal;
     padding: 8px;
     width: 25%;
     background-color: lightskyblue;
@@ -55,7 +55,7 @@ td {
 .analysis-container {
     font-size: 19px;
     margin-left: 5%;
-    color: brown;
+    color: teal;
     
 }
 table {
@@ -75,9 +75,10 @@ legend {
 .nobets {
     font-weight: 800;
     font-size: 15px;
+    background-color: lightskyblue;
 }
 .link {
-    border: 1px solid brown;
+    border: 1px solid teal;
     border-radius: 8px;
     background-color:  lightgray;
     
@@ -92,10 +93,11 @@ button {
     width: 10%;
     cursor: pointer;
     border-radius: 8px;
-    border: 1px solid brown;
+    border: 1px solid teal;
     text-decoration:underline;
 }
 .login-status {
     text-align: right;
     font-weight: 500;
+    color: brown;
 }

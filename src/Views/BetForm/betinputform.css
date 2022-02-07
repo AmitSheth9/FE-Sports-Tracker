@@ -18,7 +18,7 @@ label {
     font-weight: 1000;
     background-color: lightskyblue;
     width:100px;
-    border: 5px solid brown;
+    border: 5px solid teal;
     padding: 5px;
 }
 
@@ -71,7 +71,7 @@ font-size: 19px;
     display: flex;
     height: 60px;
     background-color:lightskyblue;
-    border: 5px solid brown;
+    border: 5px solid teal;
     margin-bottom: 25px;
     justify-content: space-evenly;
 
@@ -124,7 +124,7 @@ button {
     display: flex;
     width: 100%;
     background-color: lightskyblue;
-    border: 5px solid brown;
+    border: 5px solid teal;
     height: 50px;
     margin-bottom: 20px;
     justify-content: space space-evenly;
@@ -144,4 +144,5 @@ button {
 .login-status {
     text-align: right;
     font-weight: 500;
+    color: brown;
 }

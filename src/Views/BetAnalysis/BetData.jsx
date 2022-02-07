@@ -10,9 +10,9 @@ import { sumWageredandWin } from '../../services/handleData';
 export default function BetData() {
     const [betData, setBetData] = useState([]);
     const [netResult, setNetResult] = useState(0);
-    //const [wins, setWins] = useState(0);
-    //const [losses, setLosses] = useState(0);
-    //const [pushes, setPushes] = useState(0);
+    const [wins, setWins] = useState(0);
+    const [losses, setLosses] = useState(0);
+    const [pushes, setPushes] = useState(0);
     const [winPercentage, setWinPercentage] = useState(0);
     const [spreadPct, setSpreadPct] = useState(0);
     const [totalsPct, setTotalsPct] = useState(0);
@@ -48,6 +48,8 @@ export default function BetData() {
     const handleData = (betData) => {
             let sum = 0;
             let win = 0;
+            let lose = 0;
+            let push = 0;
             let spreadBets = 0;
             let totalBets = 0;
             let mlBets = 0;
@@ -60,9 +62,17 @@ export default function BetData() {
                win++;
            }
            if(betData[i].result === 'Lose') {
-               sum = sum - betData[i].wager;  
+               sum = sum - betData[i].wager;
+               lose++;  
            }
+           if(betData[i].result === 'Push') {
+               push++;  
         }
+        }
+        console.log(win,lose, push);
+        setWins(win);
+        setLosses(lose);
+        setPushes(push);
         let winPerct = Number(((win/betData.length)*100).toFixed(2));
         setWinPercentage(winPerct);
         setSpreadPct(Number(((spreadBets/betData.length) *100).toFixed(2)))
@@ -88,6 +98,7 @@ export default function BetData() {
             <div className = 'nobets'>You have not submitted any bets to track. Submit a bet in the <Link to='/'>BetForm</Link></div>}
             <div className = 'summary'>
                 <div className='heading'>Bets Tracked: {betData.length}</div>
+                <div className='heading'>Record: {wins}-{losses}-{pushes}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
                 <div className='heading'>Win percentage: {winPercentage}</div>
             </div>
