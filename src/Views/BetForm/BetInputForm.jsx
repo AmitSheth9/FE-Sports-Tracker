@@ -94,6 +94,10 @@ export default function BetInputForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    if(!auth.username) {
+            alert('You are not logged in. Login first to log and track your bets')
+    }
+    else {
         if(resultValue === 'Win') {
             setNetAmount(toWin);
         }
@@ -129,6 +133,7 @@ export default function BetInputForm() {
         history.replace('/betdata')
 
     }
+    }   
     const handleLogout = () => {
         auth.setUsername('');
         history.replace('/login');

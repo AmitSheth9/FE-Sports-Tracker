@@ -32,3 +32,8 @@ export async function getBetData(username) {
     .get(`${URL}/betdata/${username}`);
     return response;
 }
+export async function deleteBet(id) {
+    const response = await request
+    .delete(`${URL}/betdata/${id}`);
+    return response;
+}

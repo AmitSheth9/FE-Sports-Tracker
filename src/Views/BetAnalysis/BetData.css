@@ -81,6 +81,7 @@ legend {
     border: 1px solid teal;
     border-radius: 8px;
     background-color:  lightgray;
+    color:teal;
     
 }
 .link-container {
@@ -95,9 +96,14 @@ button {
     border-radius: 8px;
     border: 1px solid teal;
     text-decoration:underline;
+    color: teal;
 }
 .login-status {
     text-align: right;
     font-weight: 500;
     color: brown;
+}
+.remove-button {
+    font-size: 15px;
+    width: 100%;
 }

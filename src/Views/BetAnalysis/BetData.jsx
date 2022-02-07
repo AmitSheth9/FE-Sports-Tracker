@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { getBetData } from '../../services/fetch-utils'
+import { getBetData, deleteBet } from '../../services/fetch-utils'
 import { useUser } from '../../context/AuthContext';
 import { Link, useHistory } from 'react-router-dom'
 import './BetData.css'
 import { betDistributionAnalysis } from '../../services/handleData';
 import { sumWageredandWin } from '../../services/handleData';
+
 
 export default function BetData() {
     const [betData, setBetData] = useState([]);
@@ -86,7 +87,18 @@ export default function BetData() {
         auth.setUsername('');
         history.replace('/login');
         }
-      
+    const removeBet = async (id) => {
+        
+        console.log(id);
+        let deletedBet = await deleteBet(id);
+        console.log('delete bet', betData);
+        console.log(deletedBet)
+        let response = await getBetData(auth.username);
+        console.log(response.body[0])
+        setBetData(response.body[0]);
+        alert('You have sucessfully removed the bet')
+    }
+    console.log(betData);
     return (
 
 
@@ -131,6 +143,7 @@ export default function BetData() {
                     <td>-{Number(bet.wager.toFixed(2))}</td> : ''}
                         {bet.result === 'Push' ? 
                     <td>0</td> : ''}
+                    <td><button className='remove-button' onClick={() => removeBet(bet._id)}>RemoveBet</button></td>
                     </tr>
                     )})}
                     <tr>

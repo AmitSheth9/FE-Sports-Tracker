@@ -118,7 +118,8 @@ button {
     cursor: pointer;
     border-radius: 8px;
     background-color: lightgray;
-    border: 1px solid brown;
+    border: 1px solid teal;
+    color: teal;
 }
 .row-two {
     display: flex;
@@ -134,6 +135,7 @@ button {
     font-size: 15px;
     border-radius: 8px;
     background-color:  lightgray;
+    color: teal;
 }
 .link-container {
     display: flex;
