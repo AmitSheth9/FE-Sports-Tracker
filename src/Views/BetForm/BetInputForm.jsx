@@ -137,8 +137,8 @@ return (
 <div>
     
     {auth.username ? 
-    <p>You are logged in as {auth.username}</p> : 
-    <p>You are not logged in, <Link to='/login'>Login here</Link> or <Link to='/signup'>Signup here</Link></p>}
+    <div className='login-status'>You are logged in as {auth.username}</div> : 
+    <div className='login-status'>You are not logged in, <Link to='/login'>Login here</Link> or <Link to='/signup'>Signup here</Link></div>}
     <p>Welcome to Bettracker. The purpose of this site is to give sports fans a place to track their bets and obtain useful data about their betting patterns.  Submit your bet details below and then view analysis <Link to='/betdata'>here</Link>. All fields are optional. The more data the better the analysis</p>
 <div >
     <form className="form-container" onSubmit={handleSubmit}>

@@ -82,8 +82,8 @@ export default function BetData() {
 
         <div>
             {auth.username ? 
-            <p>Logged in as {auth.username}</p> : 
-            <p>Not logged in</p>}
+            <div className='login-status'>Logged in as {auth.username}</div> : 
+            <div className='login-status'>Not logged in</div>}
             {!betData.length && 
             <div className = 'nobets'>You have not submitted any bets to track. Submit a bet in the <Link to='/'>BetForm</Link></div>}
             <div className = 'summary'>

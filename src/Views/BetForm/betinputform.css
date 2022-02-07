@@ -118,6 +118,7 @@ button {
     cursor: pointer;
     border-radius: 8px;
     background-color: lightgray;
+    border: 1px solid brown;
 }
 .row-two {
     display: flex;
@@ -139,4 +140,8 @@ button {
 }
 .betmessage {
     color: brown;
+}
+.login-status {
+    text-align: right;
+    font-weight: 500;
 }
