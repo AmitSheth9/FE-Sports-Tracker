@@ -23,6 +23,7 @@ export default function BetData() {
     const [mlWinPct, setMlWinPct] = useState(0);
     const [wagerSum, setWagerSum] = useState(0);
     const [winSum, setWinSum] = useState(0);
+    const [avgWager, setAvgWager] = useState('');
     const auth = useUser();
     // eslint-disable-next-line no-unused-vars
     const [recentBets, setRecentBets] = useState([]);
@@ -43,7 +44,7 @@ export default function BetData() {
         betDistributionAnalysis(betData, setSpreadWinPct, setTotalWinPct, setMlWinPct);}, [betData])
    
     useEffect(() => {
-        sumWageredandWin(betData, setWagerSum, setWinSum)
+        sumWageredandWin(betData, setWagerSum, setWinSum, setAvgWager)
         },[betData])
     
     const handleData = (betData) => {
@@ -74,11 +75,11 @@ export default function BetData() {
         setWins(win);
         setLosses(lose);
         setPushes(push);
-        let winPerct = Number(((win/betData.length)*100).toFixed(2));
+        let winPerct = Number(((win/(win+lose))*100).toFixed(2));
         setWinPercentage(winPerct);
         setSpreadPct(Number(((spreadBets/betData.length) *100).toFixed(2)))
-        setTotalsPct(Number((totalBets/betData.length).toFixed(2)) *100)
-        setMlPct(Number((mlBets/betData.length).toFixed(2)) *100)
+        setTotalsPct(Number(((totalBets/betData.length)*100).toFixed(2)))
+        setMlPct(Number(((mlBets/betData.length)*100).toFixed(2)))
         console.log(sum);
         setNetResult(sum);
         return sum;
@@ -112,7 +113,8 @@ export default function BetData() {
                 <div className='heading'>Bets Tracked: {betData.length}</div>
                 <div className='heading'>Record: {wins}-{losses}-{pushes}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
-                <div className='heading'>Win percentage: {winPercentage}</div>
+                <div className='heading'>Win percentage: {winPercentage}%</div>
+                <div className='heading'>Average Wager: ${avgWager}</div>
             </div>
             <div>
                 <table>

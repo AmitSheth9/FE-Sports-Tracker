@@ -81,9 +81,9 @@
         }
      }
 
-     let spreadWinPct = Number((spreadWin/(spreadWin+spreadLoss+spreadPush)).toFixed(2));
-     let totalWinPct = Number((totalWin/(totalWin+totalLoss+totalPush)).toFixed(2));
-     let mlWinPct = Number((mlWin/(mlWin+mlLoss+mlPush)).toFixed(2))
+     let spreadWinPct = Number((spreadWin/(spreadWin+spreadLoss)).toFixed(2));
+     let totalWinPct = Number((totalWin/(totalWin+totalLoss)).toFixed(2));
+     let mlWinPct = Number((mlWin/(mlWin+mlLoss)).toFixed(2))
 
      setSpreadWinPct(spreadWinPct*100);
      setTotalWinPct(totalWinPct*100);
@@ -91,12 +91,14 @@
      
  }
 
- export function sumWageredandWin (betData, setWagerSum, setWinSum) {
+ export function sumWageredandWin (betData, setWagerSum, setWinSum, setAvgWager) {
    let wageredSum = betData.map(bet => bet.wager).reduce((prev, next) => prev + next, 0);
    let winSum = betData.map(bet=> bet.win).reduce((prev,next)=> prev+next, 0);
    console.log(wageredSum, winSum);
     setWagerSum(Number(wageredSum.toFixed(2)));
     setWinSum(Number(winSum.toFixed(2)));
+    setAvgWager(wageredSum/betData.length)
+    console.log('avgwager', wageredSum/betData.length)
  }
 
 
