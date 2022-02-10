@@ -35,7 +35,7 @@ export default function BetData() {
             setBetData(data.body[0]);
             setRecentBets(data.body[1]);  
         }    
-        if(auth.username){onMount()}}, [auth.username])
+    if(auth.username){onMount()}}, [auth.username])
 
     useEffect(() => {
         handleData(betData);}, [betData])
@@ -83,16 +83,14 @@ export default function BetData() {
         console.log(sum);
         setNetResult(sum);
         return sum;
-        }
+    }
     const handleLogout = () => {
         auth.setUsername('');
         history.replace('/login');
         }
     const removeBet = async (id) => {
-        
         console.log(id);
         let deletedBet = await deleteBet(id);
-        console.log('delete bet', betData);
         console.log(deletedBet)
         let response = await getBetData(auth.username);
         console.log(response.body[0])
@@ -100,21 +98,45 @@ export default function BetData() {
         alert('You have sucessfully removed the bet')
     }
     console.log(betData);
+
     return (
-
-
         <div>
             {auth.username ? 
             <div className='login-status'>Logged in as {auth.username}</div> : 
             <div className='login-status'>Not logged in</div>}
             {!betData.length && 
             <div className = 'nobets'>You have not submitted any bets to track. Submit a bet in the <Link to='/'>BetForm</Link></div>}
+            <div className='stats-container'>
             <div className = 'summary'>
                 <div className='heading'>Bets Tracked: {betData.length}</div>
                 <div className='heading'>Record: {wins}-{losses}-{pushes}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
                 <div className='heading'>Win percentage: {winPercentage}%</div>
                 <div className='heading'>Average Wager: ${Number(avgWager).toFixed(2)}</div>
+            </div>
+            <div className='analysis-container'>Bet Distribution Analysis
+                <div className= 'bet-distribution'>
+                    <p className='dist-data'>Spread Bets: {spreadPct}%</p> 
+                    <p className='dist-data'>Total Bets: {totalsPct}%</p> 
+                    <p className='dist-data'>Moneyline Bets: {mlPct}%</p> 
+                </div>
+                <div className='distribution-analysis'>
+                    <p className='dist-data'>Spread Bets Win Pct: {spreadWinPct}%</p>
+                    <p className='dist-data'>Total Bets Win Pct: {totalWinPct}%</p>
+                    <p className='dist-data'>Moneyline Bets Win Pct: {mlWinPct}%</p>
+                </div>
+                <div>
+                   {/* {recentBets.map((bet)=>{
+                        return (
+                            <div>
+                            <div>{bet.submitDate}</div>
+                            <div>{bet.result}</div>
+                            </div>
+                        )
+                    })}
+                */}
+                </div>
+            </div>
             </div>
             <div>
                 <table>
@@ -160,36 +182,14 @@ export default function BetData() {
                     <td>{winSum}</td>
                     <td>{Number(netResult.toFixed(2))}</td>
                     </tr>
-                </table><br/>
+                </table><br/><br/>
             </div>
-            <div className='analysis-container'>Bet Distribution Analysis
-                <div className= 'bet-distribution'>
-                    <p className='dist-data'>Spread Bets: {spreadPct}%</p> 
-                    <p className='dist-data'>Total Bets: {totalsPct}%</p> 
-                    <p className='dist-data'>Moneyline Bets: {mlPct}%</p> 
-                </div>
-                <div className='distribution-analysis'>
-                    <p className='dist-data'>Spread Bets Win Pct: {spreadWinPct}%</p>
-                    <p className='dist-data'>Total Bets Win Pct: {totalWinPct}%</p>
-                    <p className='dist-data'>Moneyline Bets Win Pct: {mlWinPct}%</p>
-                </div>
-                <div>
-                   {/* {recentBets.map((bet)=>{
-                        return (
-                            <div>
-                            <div>{bet.submitDate}</div>
-                            <div>{bet.result}</div>
-                            </div>
-                        )
-                    })}
-                */}
-                </div>
-            </div>
+            
             <p className = 'link-container'>
-            <Link className='link' to='/signup'>Signup</Link><br/>
-            <Link className='link' to='/login'>Login</Link><br/>
-            <Link className='link' to='/'>Add another bet</Link>
-            {auth.username && <button onClick={handleLogout}>Logout</button>}
+                <Link className='link' to='/signup'>Signup</Link><br/>
+                <Link className='link' to='/login'>Login</Link><br/>
+                <Link className='link' to='/'>Add another bet</Link>
+                {auth.username && <button onClick={handleLogout}>Logout</button>}
             </p>
         </div>
     )

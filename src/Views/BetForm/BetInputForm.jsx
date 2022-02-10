@@ -44,8 +44,8 @@ export default function BetInputForm() {
                 setWagered(wagerMinus);
                 }
             }
-        }
-        calcJuiceToWin()}, [priceDropValue, wagered, toWin])
+    }
+    calcJuiceToWin()}, [priceDropValue, wagered, toWin])
 
     const handleWinWager = (e) => {
         console.log('etargetname', e.target.name);
@@ -94,17 +94,17 @@ export default function BetInputForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    if(!auth.username) {
+        if(!auth.username) {
             alert('You are not logged in. Login first to log and track your bets')
-    }
-    else {
-        if(resultValue === 'Win') {
+        }
+        else {
+            if(resultValue === 'Win') {
             setNetAmount(toWin);
-        }
-        if(resultValue === 'Lose') {
+            }
+            if(resultValue === 'Lose') {
             setNetAmount((wagered)*(-1))
-        }
-        if(resultValue === 'Push'){
+            }
+            if(resultValue === 'Push'){
             setNetAmount(0);
         }
         const betObject = {
@@ -138,6 +138,7 @@ export default function BetInputForm() {
         auth.setUsername('');
         history.replace('/login');
     }
+
 return (
 <div>
     
@@ -145,8 +146,8 @@ return (
     <div className='login-status'>You are logged in as {auth.username}</div> : 
     <div className='login-status'>You are not logged in, <Link to='/login'>Login here</Link> or <Link to='/signup'>Signup here</Link></div>}
     <p>Welcome to Bettracker. The purpose of this site is to give sports fans a place to track their bets and obtain useful data about their betting patterns.  Submit your bet details below and then view analysis <Link to='/betdata'>here</Link>. All fields are optional. The more data the better the analysis</p>
-<div >
-    <form className="form-container" onSubmit={handleSubmit}>
+    <div >
+        <form className="form-container" onSubmit={handleSubmit}>
         <label className='sport'> Sport
         <select 
             value={sportDropValue} 
@@ -175,7 +176,7 @@ return (
                 <option value='Game'>GM</option>   
                 <option value='1H'>1H</option>
                 <option value='2H'>2H</option>
-                </select>
+            </select>
         </label>
         </div>
         <div className='div-conditional-container'> 
@@ -248,10 +249,18 @@ return (
             })()}
         </div>
         <label className='win-wagered'> Amount Wagered
-        <input name='wager' value={wagered} onChange={handleWinWager} />
+        <input 
+            name='wager' 
+            value={wagered} 
+            onChange={handleWinWager} 
+        />
         </label>
         <label className='win-wagered'> Amount to Win
-        <input name='win' value={toWin} onChange={handleWinWager}/>
+        <input 
+            name='win' 
+            value={toWin} 
+            onChange={handleWinWager}
+        />
         </label>
         <br/>
         <label className='result'>Win/Lose/Push
@@ -312,14 +321,14 @@ return (
         <button type='submit'>Submit Bet</button>
     </form>
    
-</div>
-<p className='link-container'>
- <Link className='link' to='/signup'>Signup</Link><br/>
- <Link className='link' to='/login'>Login</Link><br/>
- <Link className='link' to='/change-password'>ChangePW</Link><br/>
- <Link className='link' to='/betdata'>Bet Data</Link>
- {auth.username && <button onClick={handleLogout}>Logout</button>}
-</p>
+    </div>
+    <p className='link-container'>
+    <Link className='link' to='/signup'>Signup</Link><br/>
+    <Link className='link' to='/login'>Login</Link><br/>
+    <Link className='link' to='/change-password'>ChangePW</Link><br/>
+    <Link className='link' to='/betdata'>Bet Data</Link>
+    {auth.username && <button onClick={handleLogout}>Logout</button>}
+    </p>
 </div>
     )
 }
