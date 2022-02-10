@@ -114,7 +114,7 @@ export default function BetData() {
                 <div className='heading'>Record: {wins}-{losses}-{pushes}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
                 <div className='heading'>Win percentage: {winPercentage}%</div>
-                <div className='heading'>Average Wager: ${avgWager}</div>
+                <div className='heading'>Average Wager: ${Number(avgWager).toFixed(2)}</div>
             </div>
             <div>
                 <table>
@@ -123,6 +123,7 @@ export default function BetData() {
                         <th>Date</th>
                         <th>Result</th>
                         <th>Bet Type</th>
+                        <th>Sport</th>
                         <th>Spread</th>
                         <th>Wagered</th>
                         <th>To Win</th>
@@ -136,6 +137,7 @@ export default function BetData() {
                     <td>{bet.submitDate.slice(0,10)}</td>}
                     <td>{bet.result}</td>
                     <td>{bet.betType}</td>
+                    <td>{bet.sport}</td>
                     <td>{bet.spread}</td>
                     <td>{Number(bet.wager.toFixed(2))}</td>
                     <td>{Number(bet.win.toFixed(2))}</td>
@@ -151,6 +153,7 @@ export default function BetData() {
                     <tr>
                     <td></td>
                     <td>{winPercentage}%</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td>{wagerSum}</td>
