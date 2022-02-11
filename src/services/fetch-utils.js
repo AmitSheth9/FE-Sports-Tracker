@@ -11,8 +11,8 @@ export async function signUp(obj) {
 export async function logIn(obj) {
     const response = await request
     .post(`${URL}/login`)
-    .send(obj)
-    .withCredentials();
+    .send(obj);
+    //.withCredentials();
     return response;
 }
 export async function changePW(obj) {
