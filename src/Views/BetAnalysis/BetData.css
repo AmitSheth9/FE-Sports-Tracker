@@ -54,6 +54,7 @@ td {
 }
 .analysis-container {
     font-size: 19px;
+    font-weight: 700;
     margin-left: 5%;
     color: teal;
     
@@ -106,4 +107,10 @@ button {
 .remove-button {
     font-size: 15px;
     width: 100%;
+}
+caption {
+    color: teal;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 15px;
 }

@@ -118,7 +118,8 @@ export default function BetData() {
             </div>
             <div>
                 <table>
-                    <legend>Bet History</legend>
+                    <caption>Bet History</caption>
+                    <thead>
                     <tr>
                         <th>Date</th>
                         <th>Result</th>
@@ -129,11 +130,13 @@ export default function BetData() {
                         <th>To Win</th>
                         <th>Net</th>
                     </tr>
+                    </thead>
                  {betData.map((bet) => {
                     return (
-                    <tr className='beta-container' key={bet._id}>
+                    <tbody key={bet._id}>
+                    <tr className='beta-container'>
                         {bet.betDate ? 
-                    <td>{bet.betDate.slice(0 , 10)}</td> : 
+                    <td>{bet.betDate.slice(0, 10)}</td> : 
                     <td>{bet.submitDate.slice(0,10)}</td>}
                     <td>{bet.result}</td>
                     <td>{bet.betType}</td>
@@ -141,15 +144,17 @@ export default function BetData() {
                     <td>{bet.spread}</td>
                     <td>{Number(bet.wager.toFixed(2))}</td>
                     <td>{Number(bet.win.toFixed(2))}</td>
-                        {bet.result === "Win" ? 
-                    <td>{Number(bet.win.toFixed(2))}</td> : ''}
-                        {bet.result === "Lose" ? 
-                    <td>-{Number(bet.wager.toFixed(2))}</td> : ''}
-                        {bet.result === 'Push' ? 
-                    <td>0</td> : ''}
+                        {bet.result === "Win" && 
+                    <td>{Number(bet.win.toFixed(2))}</td>}
+                        {bet.result === "Lose" && 
+                    <td>-{Number(bet.wager.toFixed(2))}</td>}
+                        {bet.result === 'Push' && 
+                    <td>0</td>}
                     <td><button className='remove-button' onClick={() => removeBet(bet._id)}>RemoveBet</button></td>
                     </tr>
+                    </tbody>
                     )})}
+                    <tfoot>
                     <tr>
                     <td></td>
                     <td>{winPercentage}%</td>
@@ -160,6 +165,7 @@ export default function BetData() {
                     <td>{winSum}</td>
                     <td>{Number(netResult.toFixed(2))}</td>
                     </tr>
+                    </tfoot>
                 </table><br/>
             </div>
             <div className='analysis-container'>Bet Distribution Analysis
