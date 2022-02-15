@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: lightbeige;
 }
 .bet-container {
     display: flex;
@@ -10,18 +10,18 @@ p {
     padding: 5px;
     color: black;
     font-weight: 900;
-    background-color: lightskyblue;
+    background-color: beige;
 }
 .summary {
     font-weight: 500;
-    color: black;
+    color: brown;
     padding: 10px;
     margin-bottom: 25px;
     font-size: 18px;
     margin-left: 5%;
 }
 th {
-    border: 1px solid teal;
+    border: 1px solid brown;
     font-weight: 900;
     padding: 5px;
 }
@@ -41,27 +41,27 @@ td {
     font-size: 13px;
     padding: 10px;
     font-weight: 500;
-    background-color: beige;
     width: 20%;
-    background-color: lightskyblue;
+    background-color: beige;
     height:120%;
 }
 .heading {
     border: 1px solid teal;
     padding: 8px;
     width: 25%;
-    background-color: lightskyblue;
+    background-color: beige;
 }
 .analysis-container {
     font-size: 19px;
     font-weight: 700;
     margin-left: 5%;
-    color: teal;
+    color: brown;
     
 }
 table {
     margin-left: 10%;
-    background-color: lightskyblue;
+    background-color:beige;
+    color: brown;
 }
 legend {
     font-size: 24px;
@@ -79,7 +79,7 @@ legend {
     background-color: lightskyblue;
 }
 .link {
-    border: 1px solid teal;
+    border: 1px solid brown;
     border-radius: 8px;
     background-color:  lightgray;
     color:teal;
@@ -109,7 +109,7 @@ button {
     width: 100%;
 }
 caption {
-    color: teal;
+    color: brown;
     font-weight: 700;
     font-size: 20px;
     padding: 15px;
