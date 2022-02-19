@@ -7,7 +7,7 @@ import './betinputform.css';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
-import { postBetForm } from '../../services/fetch-utils';
+import { postBetForm, logOut } from '../../services/fetch-utils';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
@@ -89,13 +89,26 @@ export default function BetInputForm() {
     }
 
     useEffect(() => {
+        const onLoad = async () => {
+            if(localStorage.getItem('user')){
+                const userObj = JSON.parse(localStorage.getItem('user'))
+                console.log('userobj', userObj);
+                auth.setUsername(userObj.username);
+            }
+            else {
+                auth.setUsername('');
+            }
+        }
+    onLoad()}, [auth])
+
+    useEffect(() => {
         getDate();
     }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     if(!auth.username) {
-            alert('You are not logged in. Login first to log and track your bets')
+            alert('You are not logged in. Login first to track your bets')
     }
     else {
         if(resultValue === 'Win') {
@@ -134,8 +147,11 @@ export default function BetInputForm() {
 
     }
     }   
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        const response = await logOut();
+        console.log(response);
         auth.setUsername('');
+        localStorage.clear();
         history.replace('/login');
     }
 return (
