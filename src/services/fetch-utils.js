@@ -19,7 +19,7 @@ export async function logIn(obj) {
 }
 export async function logOut() {
     const response = await request
-    .delete(`${URL}/login`)
+    .get(`${URL}/logout`)
     .withCredentials()
 
     return response;
