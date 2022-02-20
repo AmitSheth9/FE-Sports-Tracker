@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { getBetData, deleteBet } from '../../services/fetch-utils'
+import { getBetData, deleteBet, logOut } from '../../services/fetch-utils'
 import { useUser } from '../../context/AuthContext';
 import { Link, useHistory } from 'react-router-dom'
 import './BetData.css'
@@ -46,6 +46,19 @@ export default function BetData() {
     useEffect(() => {
         sumWageredandWin(betData, setWagerSum, setWinSum, setAvgWager)
         },[betData])
+
+    useEffect(() => {
+        const onLoad = async () => {
+            if(localStorage.getItem('user')){
+            const userObj = JSON.parse(localStorage.getItem('user'))
+            console.log('userobj', userObj);
+            auth.setUsername(userObj.username);
+            }
+            else {
+                auth.setUsername('');
+            }
+        }
+    onLoad()}, [auth])
     
     const handleData = (betData) => {
             let sum = 0;
@@ -84,8 +97,11 @@ export default function BetData() {
         setNetResult(sum);
         return sum;
         }
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        const response = await logOut();
+        console.log(response);
         auth.setUsername('');
+        localStorage.clear();
         history.replace('/login');
         }
     const removeBet = async (id) => {
@@ -191,12 +207,13 @@ export default function BetData() {
                 */}
                 </div>
             </div>
-            <p className = 'link-container'>
+            <div className = 'link-container'>
             <Link className='link' to='/signup'>Signup</Link><br/>
             <Link className='link' to='/login'>Login</Link><br/>
+            <Link className='link' to='/home'>Home</Link>
             <Link className='link' to='/'>Add another bet</Link>
             {auth.username && <button onClick={handleLogout}>Logout</button>}
-            </p>
+            </div>
         </div>
     )
 }

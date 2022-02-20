@@ -1,19 +1,27 @@
-import request from 'superagent';
+/* eslint-disable no-unused-vars */
+import request, { listenerCount } from 'superagent';
 
-//const URL = 'http://localhost:7890';
-//so can commit
-const URL = 'https://salty-beyond-78599.herokuapp.com';
+const URL = 'http://localhost:7890';
+//const URL = 'https://salty-beyond-78599.herokuapp.com';
 export async function signUp(obj) {
     const response = await request
     .post(`${URL}/signup`)
+    .withCredentials()
     .send(obj);
     return response;
 }
 export async function logIn(obj) {
     const response = await request
     .post(`${URL}/login`)
+    .withCredentials()
     .send(obj);
-    //.withCredentials();
+    return response;
+}
+export async function logOut() {
+    const response = await request
+    .delete(`${URL}/login`)
+    .withCredentials()
+
     return response;
 }
 export async function changePW(obj) {
