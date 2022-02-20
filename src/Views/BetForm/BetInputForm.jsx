@@ -7,7 +7,7 @@ import './betinputform.css';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
-import { postBetForm } from '../../services/fetch-utils';
+import { postBetForm, logOut } from '../../services/fetch-utils';
 
 export default function BetInputForm() {
     const [firstDropValue, setFirstDropValue] = useState('Spread');
@@ -48,7 +48,6 @@ export default function BetInputForm() {
         calcJuiceToWin()}, [priceDropValue, wagered, toWin])
 
     const handleWinWager = (e) => {
-        console.log('etargetname', e.target.name);
         if (e.target.name === 'win') {
             setToWin(e.target.value);
             setWagered(calcWager(e));
@@ -89,13 +88,26 @@ export default function BetInputForm() {
     }
 
     useEffect(() => {
+        const onLoad = async () => {
+            if(localStorage.getItem('user')){
+                const userObj = JSON.parse(localStorage.getItem('user'))
+                console.log('userobj', userObj);
+                auth.setUsername(userObj.username);
+            }
+            else {
+                auth.setUsername('');
+            }
+        }
+    onLoad()}, [auth])
+
+    useEffect(() => {
         getDate();
     }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     if(!auth.username) {
-            alert('You are not logged in. Login first to log and track your bets')
+            alert('You are not logged in. Login first to track your bets')
     }
     else {
         if(resultValue === 'Win') {
@@ -134,19 +146,23 @@ export default function BetInputForm() {
 
     }
     }   
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        const response = await logOut();
+        console.log(response);
         auth.setUsername('');
+        localStorage.clear();
         history.replace('/login');
     }
 return (
 <div>
-    
-    {auth.username ? 
-    <div className='login-status'>You are logged in as {auth.username}</div> : 
-    <div className='login-status'>You are not logged in, <Link to='/login'>Login here</Link> or <Link to='/signup'>Signup here</Link></div>}
-    <p>Welcome to Bettracker. The purpose of this site is to give sports fans a place to track their bets and obtain useful data about their betting patterns.  Submit your bet details below and then view analysis <Link to='/betdata'>here</Link>. All fields are optional. The more data the better the analysis</p>
-<div >
-    <form className="form-container" onSubmit={handleSubmit}>
+    <div className='intro-container'>
+        {auth.username ? 
+        <div className='login-status'>You are logged in as {auth.username}</div> : 
+        <div className='login-status'>You are not logged in, <Link to='/login'>Login here</Link> or <Link to='/signup'>Signup here</Link></div>}<br/>
+        <div className='form-intro'>Submit your bet details below. All fields are optional, the more data you provide the better analysis.</div>
+    </div>
+    <div >
+        <form className="form-container" onSubmit={handleSubmit}>
         <label className='sport'> Sport
         <select 
             value={sportDropValue} 
@@ -248,10 +264,22 @@ return (
             })()}
         </div>
         <label className='win-wagered'> Amount Wagered
-        <input name='wager' value={wagered} onChange={handleWinWager} />
+        <input 
+            name='wager'
+            className='ww-input'
+            type='number' 
+            step="any"
+            value={wagered} 
+            onChange={handleWinWager} />
         </label>
         <label className='win-wagered'> Amount to Win
-        <input name='win' value={toWin} onChange={handleWinWager}/>
+        <input 
+            className='ww-input'
+            name='win' 
+            type='number'
+            step="any"
+            value={toWin} 
+            onChange={handleWinWager}/>
         </label>
         <br/>
         <label className='result'>Win/Lose/Push
@@ -311,15 +339,16 @@ return (
         </label>
         <button type='submit'>Submit Bet</button>
     </form>
-   
 </div>
-<p className='link-container'>
+<div className='link-container'>
+ <Link className='link' to='/home'>Home</Link><br/>
  <Link className='link' to='/signup'>Signup</Link><br/>
  <Link className='link' to='/login'>Login</Link><br/>
- <Link className='link' to='/change-password'>ChangePW</Link><br/>
+ {/*<Link className='link' to='/change-password'>ChangePW</Link><br/>*/}
+ <Link className='link' to='/home'>Home</Link>
  <Link className='link' to='/betdata'>Bet Data</Link>
  {auth.username && <button onClick={handleLogout}>Logout</button>}
-</p>
+</div>
 </div>
     )
 }

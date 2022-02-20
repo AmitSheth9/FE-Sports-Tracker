@@ -1,0 +1,24 @@
+
+
+.welcome {
+    font-size: 50px;
+    color: beige;
+    font-weight: 800;
+}
+
+.intro {
+    font-size: 30px;
+    color: beige;
+    font-weight: 700;
+    border: beige;
+}
+.link-container {
+    border: none;
+}
+.logo {
+    color: beige;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+}

@@ -5,6 +5,7 @@ import { logIn } from '../../services/fetch-utils';
 import { useHistory } from 'react-router-dom';
 import { useUser } from '../../context/AuthContext';
 import './Auth.css'
+import jwtDecode from 'jwt-decode';
 
 export default function Login() {
 const history = useHistory();
@@ -18,8 +19,11 @@ const handleSubmit = async (e) =>{
     e.preventDefault();
     let obj = { username, password};
     const res = await logIn(obj);
-    console.log(res.text);
-    if(res.text === 'login success') {
+    console.log(res);
+    if(res) {
+        const decoded = jwtDecode(res.text);
+        console.log('decoded', decoded);
+        localStorage.setItem('user', JSON.stringify(decoded));
         auth.setUsername(username);
         history.replace('/');
     }
