@@ -1,27 +1,30 @@
-/* {
-    display: flex;
-    color: yellow;
+
+body {
+    background-color: black;
 }
-*/
 .form-container {
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
     justify-content: space-evenly;
-
+    margin: 3%;
 }
-
+.form-intro {
+    color: beige;
+    font-size: 15px;
+    font-weight: 700;
+}
 label {
-    font-size: 90%;
+    font-size: 100%;
     margin: 5px;
     color: black;
     font-weight: 1000;
-    background-color: lightskyblue;
+    background-color: beige;
     width:100px;
-    border: 5px solid teal;
+    border: 3px solid brown;
     padding: 5px;
+    text-align: center;
 }
-
 select {
     font-size: 15px;
     padding: -5px;
@@ -38,17 +41,16 @@ body {
     background-color: beige;
 }
 .sport {
-    align-self: left;
+    text-align: center;
     width: 100%;
     margin-bottom: 20px;
     height: 40px;
 }
 .bet-type {
-border: none;
-width: 60%;
-height: 60%;
-font-size: 19px;
-
+    border: none;
+    width: 60%;
+    height: 60%;
+    font-size: 19px;
 }
 .game-part {
     border: none;
@@ -70,8 +72,8 @@ font-size: 19px;
 .div-conditional-container {
     display: flex;
     height: 60px;
-    background-color:lightskyblue;
-    border: 5px solid teal;
+    background-color:beige;
+    border: 3px solid brown;
     margin-bottom: 25px;
     justify-content: space-evenly;
 
@@ -99,11 +101,16 @@ font-size: 19px;
     width: 100%;
     margin-top: 20px;
     height: 40px;
+    text-align: center;
 }
 .notes-input {
-    width: 50%;
-    font-size: 20px;
+    width: 80%;
+    font-size: 15px;
     margin-left: 10px;
+    height: 70%;
+}
+.ww-input {
+    width: 30%;
 }
 .label-mlprice {
     border: lightgreen;
@@ -117,28 +124,29 @@ button {
     width: 20%;
     cursor: pointer;
     border-radius: 8px;
-    background-color: lightgray;
-    border: 1px solid teal;
-    color: teal;
+    background-color: beige;
+    border: 1px solid brown;
+    color: brown;
 }
 .row-two {
     display: flex;
     width: 100%;
-    background-color: lightskyblue;
-    border: 5px solid teal;
+    background-color: beige;
+    border: 3px solid brown;
     height: 50px;
     margin-bottom: 20px;
-    justify-content: space space-evenly;
+    text-align: space-evenly;
 }
 .link {
     border: 1px solid brown;
     font-size: 15px;
     border-radius: 8px;
-    background-color:  lightgray;
-    color: teal;
+    background-color:  beige;
+    color: brown;
 }
 .link-container {
     display: flex;
+    background-color: black;
 }
 .betmessage {
     color: brown;
@@ -146,5 +154,4 @@ button {
 .login-status {
     text-align: right;
     font-weight: 500;
-    color: brown;
 }

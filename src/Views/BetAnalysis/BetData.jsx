@@ -207,12 +207,13 @@ export default function BetData() {
                 */}
                 </div>
             </div>
-            <p className = 'link-container'>
+            <div className = 'link-container'>
             <Link className='link' to='/signup'>Signup</Link><br/>
             <Link className='link' to='/login'>Login</Link><br/>
+            <Link className='link' to='/home'>Home</Link>
             <Link className='link' to='/'>Add another bet</Link>
             {auth.username && <button onClick={handleLogout}>Logout</button>}
-            </p>
+            </div>
         </div>
     )
 }

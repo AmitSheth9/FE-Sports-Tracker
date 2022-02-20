@@ -1,16 +1,9 @@
 body {
-    background-color: lightbeige;
+    background-color: black;
 }
 .bet-container {
     display: flex;
     margin-bottom: -5px;
-}
-p {
-    border: 1px solid teal;
-    padding: 5px;
-    color: black;
-    font-weight: 900;
-    background-color: beige;
 }
 .summary {
     font-weight: 500;
@@ -21,12 +14,12 @@ p {
     margin-left: 5%;
 }
 th {
-    border: 1px solid brown;
+    border: 1px solid black;
     font-weight: 900;
     padding: 5px;
 }
 td {
-    border: 1px solid teal;
+    border: 1px solid black;
     font-weight: 600;
     padding: 8px;
     font-size:15px;
@@ -44,12 +37,15 @@ td {
     width: 20%;
     background-color: beige;
     height:120%;
+    border: 1px solid brown;
+    color: black;
 }
 .heading {
-    border: 1px solid teal;
+    border: 1px solid black;
     padding: 8px;
     width: 25%;
     background-color: beige;
+    color: black;
 }
 .analysis-container {
     font-size: 19px;
@@ -61,7 +57,7 @@ td {
 table {
     margin-left: 10%;
     background-color:beige;
-    color: brown;
+    color: black;
 }
 legend {
     font-size: 24px;
@@ -76,17 +72,18 @@ legend {
 .nobets {
     font-weight: 800;
     font-size: 15px;
-    background-color: lightskyblue;
+    color: beige;
 }
 .link {
     border: 1px solid brown;
     border-radius: 8px;
-    background-color:  lightgray;
-    color:teal;
+    background-color:  beige;
+    color:brown;
     
 }
 .link-container {
     display: flex;
+    border: black;
 }
 button {
     font-size: 15px;
@@ -95,14 +92,14 @@ button {
     width: 10%;
     cursor: pointer;
     border-radius: 8px;
-    border: 1px solid teal;
-    text-decoration:underline;
-    color: teal;
+    border: 1px solid brown;
+    text-decoration: none;
+    color: brown;
 }
 .login-status {
     text-align: right;
     font-weight: 500;
-    color: brown;
+    color: beige;
 }
 .remove-button {
     font-size: 15px;
@@ -113,4 +110,10 @@ caption {
     font-weight: 700;
     font-size: 20px;
     padding: 15px;
+}
+Link {
+    color: brown;
+}
+a {
+    color: brown;
 }

@@ -7,6 +7,7 @@ import Signup from './Views/Auth/Signup';
 import { UserProvider } from './context/AuthContext'
 import BetData from './Views/BetAnalysis/BetData';
 import ChangePW from './Views/Auth/ChangePW';
+import Home from './Views/Home/Home';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
       <Switch>
         <Route exact path = '/'>
           <BetInputForm/>
+        </Route>
+        <Route exact path ='/home'>
+          <Home />
         </Route>
         <Route path='/betdata' >
           <BetData />
