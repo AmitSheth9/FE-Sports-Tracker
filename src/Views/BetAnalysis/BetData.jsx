@@ -125,7 +125,7 @@ export default function BetData() {
             <div className='login-status'>Not logged in</div>}
             {!betData.length && 
             <div className = 'nobets'>You have not submitted any bets to track. Submit a bet in the <Link to='/'>BetForm</Link></div>}
-            <div className = 'summary'>
+            <div className = 'summary'>Summary
                 <div className='heading'>Bets Tracked: {betData.length}</div>
                 <div className='heading'>Record: {wins}-{losses}-{pushes}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
