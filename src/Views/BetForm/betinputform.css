@@ -45,6 +45,8 @@ body {
     width: 100%;
     margin-bottom: 20px;
     height: 40px;
+    margin-left: 4%;
+    margin-right: 6%;
 }
 .bet-type {
     border: none;
@@ -76,43 +78,55 @@ body {
     border: 3px solid brown;
     margin-bottom: 25px;
     justify-content: space-evenly;
+    margin-left: 4%;
 
 }
 .label-spread-price {
     width: 50%; 
 }
 .wagered {
-    width: 30%;
+    width: 25%;
     position: relative;
     top: -5px;
     height: 50px;
+    margin-right: 2%;
 }
 .win {
-    width: 30%;
+    width: 25%;
     position: relative;
     top: -5px;
     height: 50px;
+    margin-right: 3%;
+    margin-left: 2%;
 }
 .result {
-    width:50%;
+    width:30%;
+    margin-left: 1%;
+    margin-bottom: 2%;
 }
 .bet-date {
-    width: 45%;
+    width: 20%;
+    margin-right: 5%;
+    margin-bottom: 2%;
 }
 .bet-datetime {
     font-size: 10px;
 }
 .label-teams {
-    width: 30%;
+    width: 20%;
+    margin-right: 6%;
 }
 .rotation {
     width: 30%;
+    margin-right: 6%;
 }
 .notes {
     width: 100%;
     margin-top: 20px;
     height: 40px;
     text-align: center;
+    margin-left: 4%;
+    margin-right: 6%;
 }
 .notes-input {
     width: 80%;
@@ -147,6 +161,8 @@ button {
     height: 50px;
     margin-bottom: 20px;
     text-align: space-evenly;
+    margin-left: 4%;
+    margin-right: 6%;
 }
 .link {
     border: 1px solid brown;
