@@ -263,6 +263,7 @@ return (
             }
             })()}
         </div>
+        <div className='row3'>
         <label className='wagered'> Amount Wagered
         <input 
             name='wager'
@@ -291,6 +292,8 @@ return (
             <option value="Push">Push</option>
         </select>
         </label>
+        </div>
+        <div className='row4'>
         <label className='bet-date'>Date of Bet:
         <Datetime 
             inputProps={{className:'datetime'}}
@@ -331,19 +334,20 @@ return (
             value={rotationNum} 
             onChange={(e) => setRotationNum(e.target.value)}/>
         </label>
+        </div>
         <label className='notes'>Bet Notes
         <input 
             className='notes-input' 
             value={notes} 
             onChange={(e) => setNotes(e.target.value)} />
         </label>
-        <button type='submit'>Submit Bet</button>
+        <button className='submit-but' type='submit'>Submit Bet</button>
     </form>
 </div>
 <div className='link-container'>
  <Link className='link' to='/home'>Home</Link><br/>
  <Link className='link' to='/signup'>Signup</Link><br/>
- <Link className='link' to='/login'>Login</Link><br/>
+ {!auth.username && <Link className='link' to='/login'>Login</Link>}<br/>
  {/*<Link className='link' to='/change-password'>ChangePW</Link><br/>*/}
  <Link className='link' to='/home'>Home</Link>
  <Link className='link' to='/betdata'>Bet Data</Link>
