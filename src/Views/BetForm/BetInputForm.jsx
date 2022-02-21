@@ -263,7 +263,7 @@ return (
             }
             })()}
         </div>
-        <label className='win-wagered'> Amount Wagered
+        <label className='wagered'> Amount Wagered
         <input 
             name='wager'
             className='ww-input'
@@ -272,7 +272,7 @@ return (
             value={wagered} 
             onChange={handleWinWager} />
         </label>
-        <label className='win-wagered'> Amount to Win
+        <label className='win'> Amount to Win
         <input 
             className='ww-input'
             name='win' 

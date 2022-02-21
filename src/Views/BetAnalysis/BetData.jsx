@@ -5,7 +5,7 @@ import { useUser } from '../../context/AuthContext';
 import { Link, useHistory } from 'react-router-dom'
 import './BetData.css'
 import { betDistributionAnalysis } from '../../services/handleData';
-import { sumWageredandWin } from '../../services/handleData';
+import { sumWageredandWin, getWinLoss } from '../../services/handleData';
 
 
 export default function BetData() {
@@ -38,7 +38,7 @@ export default function BetData() {
         if(auth.username){onMount()}}, [auth.username])
 
     useEffect(() => {
-        handleData(betData);}, [betData])
+        getWinLoss(betData, setWins, setLosses, setPushes, setWinPercentage, setMlPct, setTotalsPct, setSpreadPct, setNetResult);}, [betData])
 
     useEffect(() => {
         betDistributionAnalysis(betData, setSpreadWinPct, setTotalWinPct, setMlWinPct);}, [betData])
@@ -60,43 +60,6 @@ export default function BetData() {
         }
     onLoad()}, [auth])
     
-    const handleData = (betData) => {
-            let sum = 0;
-            let win = 0;
-            let lose = 0;
-            let push = 0;
-            let spreadBets = 0;
-            let totalBets = 0;
-            let mlBets = 0;
-       for( let i = 0; i<betData.length; i++) {
-           if(betData[i].betType === 'Spread'){spreadBets++}
-           if(betData[i].betType === 'Total'){totalBets++}
-           if(betData[i].betType === 'Moneyline'){mlBets++}
-           if (betData[i].result === 'Win') {
-               sum = sum + betData[i].win;
-               win++;
-           }
-           if(betData[i].result === 'Lose') {
-               sum = sum - betData[i].wager;
-               lose++;  
-           }
-           if(betData[i].result === 'Push') {
-               push++;  
-        }
-        }
-        console.log(win,lose, push);
-        setWins(win);
-        setLosses(lose);
-        setPushes(push);
-        let winPerct = Number(((win/(win+lose))*100).toFixed(2));
-        setWinPercentage(winPerct);
-        setSpreadPct(Number(((spreadBets/betData.length) *100).toFixed(2)))
-        setTotalsPct(Number(((totalBets/betData.length)*100).toFixed(2)))
-        setMlPct(Number(((mlBets/betData.length)*100).toFixed(2)))
-        console.log(sum);
-        setNetResult(sum);
-        return sum;
-        }
     const handleLogout = async () => {
         const response = await logOut();
         console.log(response);
@@ -105,7 +68,8 @@ export default function BetData() {
         history.replace('/login');
         }
     const removeBet = async (id) => {
-        
+        const answer = window.confirm('This will remove the selected bet. Continue?');
+        if(answer) {
         console.log(id);
         let deletedBet = await deleteBet(id);
         console.log('delete bet', betData);
@@ -113,7 +77,7 @@ export default function BetData() {
         let response = await getBetData(auth.username);
         console.log(response.body[0])
         setBetData(response.body[0]);
-        alert('You have sucessfully removed the bet')
+        }
     }
     console.log(betData);
     return (
@@ -126,7 +90,7 @@ export default function BetData() {
             {!betData.length && 
             <div className = 'nobets'>You have not submitted any bets to track. Submit a bet in the <Link to='/'>BetForm</Link></div>}
             <div className = 'summary'>Summary
-                <div className='heading'>Bets Tracked: {betData.length}</div>
+                <br/><br/><div className='heading'>Bets Tracked: {betData.length}</div>
                 <div className='heading'>Record: {wins}-{losses}-{pushes}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
                 <div className='heading'>Win percentage: {winPercentage}%</div>
@@ -209,7 +173,7 @@ export default function BetData() {
             </div>
             <div className = 'link-container'>
             <Link className='link' to='/signup'>Signup</Link><br/>
-            <Link className='link' to='/login'>Login</Link><br/>
+            {!auth.username && <Link className='link' to='/login'>Login</Link>}<br/>
             <Link className='link' to='/home'>Home</Link>
             <Link className='link' to='/'>Add another bet</Link>
             {auth.username && <button onClick={handleLogout}>Logout</button>}

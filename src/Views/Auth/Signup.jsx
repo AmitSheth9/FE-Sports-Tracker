@@ -25,13 +25,12 @@ export default function Signup() {
         try{
         e.preventDefault();
         let obj = { username: username, password: password, date: signupDate };
-        console.log(obj);
         const response = await signUp(obj);
-        console.log(response.text);
+        console.log(response);
         history.replace('/login');
         alert('You have succesfully signed up for Bettracker. Please login with your credentials')
         }catch (err){
-            setError(err.message)
+        setError(err.message)
         }
     }
     return (
@@ -62,6 +61,7 @@ export default function Signup() {
                 </fieldset>
             </form><br/>
             <Link className='link' to='/login'>Login</Link>
+            <Link className='link' to='/home'>Home</Link>
             {error && <p>{error.message}</p>}
             <Link className='link' to='/'>BetForm</Link>
         </div>

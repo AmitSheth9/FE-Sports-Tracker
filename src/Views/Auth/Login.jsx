@@ -19,7 +19,6 @@ const handleSubmit = async (e) =>{
     e.preventDefault();
     let obj = { username, password};
     const res = await logIn(obj);
-    console.log(res);
     if(res) {
         const decoded = jwtDecode(res.text);
         console.log('decoded', decoded);
@@ -61,6 +60,7 @@ const handleSubmit = async (e) =>{
             </form><br/>
             <div>
                 <Link className='link' to='/signup'>Signup</Link>
+                <Link className='link' to='/home'>Home</Link>
                 <Link className='link' to='/'>BetForm</Link>
             </div>
             <div>
