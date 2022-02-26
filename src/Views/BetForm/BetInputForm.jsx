@@ -113,10 +113,10 @@ export default function BetInputForm() {
         if(resultValue === 'Win') {
             setNetAmount(toWin);
         }
-        if(resultValue === 'Lose') {
+        else if(resultValue === 'Lose') {
             setNetAmount((wagered)*(-1))
         }
-        if(resultValue === 'Push'){
+        else if(resultValue === 'Push'){
             setNetAmount(0);
         }
         const betObject = {

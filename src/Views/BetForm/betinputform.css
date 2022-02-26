@@ -25,7 +25,7 @@ body {
     border-radius: 8px;
 }
 .form-intro {
-    color: beige;
+    color: brown;
     font-size: 15px;
     font-weight: 700;
 }
@@ -40,7 +40,7 @@ label {
     text-align: center;
 }
 select {
-    font-size: 15px;
+    font-size: 10px;
     padding: -5px;
     margin-left: 10px;
 }
@@ -200,4 +200,213 @@ button {
 .login-status {
     text-align: right;
     font-weight: 500;
+}
+
+@media (max-width: 1000px) {
+
+    .form-container {
+        display: grid;
+        margin: 3%;
+        
+    }
+    .row3 {
+        display: flex;
+        margin-left: 10%;
+        margin-right: 16%;
+        background-color: beige;
+        height: 65px;
+        border-radius: 8px;
+    }
+    .row4 {
+        display: flex;
+        margin-left: 10%;
+        margin-right: 16%;
+        background-color: beige;
+        margin-top: 2%;
+        justify-content: space-evenly;
+        border-radius: 8px;
+    }
+    .form-intro {
+        color: brown;
+        font-size: 15px;
+        font-weight: 700;
+    }
+    label {
+        font-size: 50%;
+        border: 3px solid brown;
+        margin: 5px;
+        color: black;
+        font-weight: 1000;
+        background-color: beige;
+        padding: 5px;
+        text-align: center;
+    }
+    select {
+        font-size: 10px;
+        padding: -5px;
+        margin-left: 10px;
+    }
+    input {
+        width: 30%;
+        height: 30%;
+        font-size: 30%;
+        margin-left: 10px;
+        font-weight: 600;
+    }
+    body {
+        background-color: beige;
+    }
+    .sport {
+        text-align: center;
+        margin-bottom: 20px;
+        height: 40px;
+        margin-left: 10%;
+        margin-right: 16%;
+        border-radius: 8px;
+        border: none;
+    }
+    .bet-type {
+        border: none;
+        width: 60%;
+        height: 30%;
+        font-size: 70%;
+    }
+    .game-part {
+        border: none;
+    }
+    .win-wagered {
+        width: 30%;
+        position: relative;
+        top: -5px;
+        height: 50px;
+    }
+    .div-spread {
+        margin-top: 15px;
+    }
+    .div-total {
+        margin-top: 15px;
+    }
+    .div-conditional-container {
+        display: flex;
+        height: 60px;
+        background-color:beige;
+        margin-bottom: 25px;
+        justify-content: space-evenly;
+        margin-left: 10%;
+        margin-right: 16%;
+        border-radius: 8px;
+    
+    }
+    .label-spread-price {
+        width: 50%; 
+    }
+    .wagered {
+        width: 25%;
+        position: relative;
+        height: 40px;
+        margin-right: 2%;
+    }
+    .win {
+        width: 25%;
+        position: relative;
+        height: 40px;
+        margin-right: 3%;
+        margin-left: 2%;
+    }
+    .result {
+        width:30%;
+        height: 40px;
+        margin-left: 1%;
+        margin-bottom: 2%;
+    }
+    .bet-date {
+        width: 40%;
+    }
+    .bet-datetime {
+        font-size: 25px;
+    }
+    #datepicker {
+        height: 100%;
+    }
+    .label-teams {
+        width: 20%;
+    }
+    .rotation {
+        width: 30%;
+    }
+    .notes {
+        height: 40px;
+        text-align: center;
+        margin-left: 10%;
+        margin-right: 16%;
+        background-color: beige;
+        height: 50px;
+        margin-top: 2%;
+        border-radius: 8px;
+        border: none;
+    }
+    .notes-input {
+        width: 80%;
+        font-size: 15px;
+        margin-left: 10px;
+        height: 40%;
+    }
+    .ww-input {
+        width: 30%;
+    }
+    .label-mlprice {
+        border: lightgreen;
+        font-size: 15px;
+        margin-top: 0px;
+    }
+    button {
+        font-size: 16px;
+        margin-top: 10px;
+        padding: 5px;
+        width: 19%;
+        cursor: pointer;
+        border-radius: 8px;
+        background-color: beige;
+        border: 1px solid brown;
+        color: brown;
+        text-align: center;
+       
+    }
+    .submit-but {
+        margin-left: 34%;
+        border-radius: 8px;
+        font-size: 10px;
+        width: 24%;
+        height: 70%;
+    }
+    .row-two {
+        display: flex;
+        background-color: beige;
+        height: 50px;
+        margin-bottom: 20px;
+        text-align: space-evenly;
+        margin-left: 10%;
+        margin-right: 16%;
+        border-radius: 8px;
+    }
+    .link {
+        border: 1px solid brown;
+        font-size: 15px;
+        border-radius: 8px;
+        background-color:  beige;
+        color: brown;
+    }
+    .link-container {
+        display: flex;
+        background-color: black;
+        margin-top: 0%;
+    }
+    .betmessage {
+        color: brown;
+    }
+    .login-status {
+        text-align: right;
+        font-weight: 500;
+    }
+
 }
