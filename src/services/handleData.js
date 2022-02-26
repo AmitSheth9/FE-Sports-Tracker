@@ -1,43 +1,4 @@
 
-
-/*export function handleData(betData, setSpreadPct, setTotalsPct, setMlPct, setWinPercentage, setNetResult) {
-    let sum = 0;
-    let w = 0;
-
-    let spreadBets = 0;
-    let totalBets = 0;
-    let mlBets = 0;
-   for( let i = 0; i<betData.length; i++) {
-       if(betData[i].betType === 'Spread'){spreadBets++}
-       if(betData[i].betType === 'Total'){totalBets++}
-       if(betData[i].betType === 'Moneyline'){mlBets++}
-       if (betData[i].result === 'Win') {
-           sum = sum + betData[i].win;
-           w++;
-       }
-       if(betData[i].result === 'Lose') {
-           sum = sum - betData[i].wager;
-           
-       }
-       if(betData[i].result === 'Push') {
-           
-       }
-       
-   }
-    let winP = Number(((w/betData.length)*100).toFixed(2));
-        let spreadPctTruncate = Number(((spreadBets/betData.length)*100).toFixed(2));
-        let totalPctTruncate = Number(((totalBets/betData.length)*100).toFixed(2));
-        let mlPctTruncate = Number(((mlBets/betData.length)*100).toFixed(2));
-       setSpreadPct(spreadPctTruncate);
-       setTotalsPct(totalPctTruncate);
-       setMlPct(mlPctTruncate);
-       setWinPercentage(winP);
-       console.log(sum);
-       setNetResult(sum);
-       return sum;
-      
-    }
-*/
  export function betDistributionAnalysis(betData, setSpreadWinPct, setTotalWinPct, setMlWinPct ){
      let spreadWin = 0;
      let spreadLoss = 0;
