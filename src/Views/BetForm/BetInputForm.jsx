@@ -225,7 +225,7 @@ return (
                     <label className='label-total'> Over/Under:
                     <select 
                         value={overUnder} 
-                        onChange={setOverUnder}>
+                        onChange={(e) => setOverUnder(e.target.value)}>
                         <option value='Over'>Over</option>
                         <option value='Under'>Under</option>
                     </select>
