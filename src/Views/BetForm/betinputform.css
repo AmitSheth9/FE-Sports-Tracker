@@ -28,6 +28,7 @@ body {
     color: brown;
     font-size: 15px;
     font-weight: 700;
+    margin-left: 5px;
 }
 label {
     font-size: 100%;
@@ -200,6 +201,13 @@ button {
 .login-status {
     text-align: right;
     font-weight: 500;
+    margin-right: 5px;
+}
+.guest-status {
+    text-align: left;
+    font-weight: 500;
+    color: brown;
+    margin-left: 5px;
 }
 
 @media (max-width: 1000px) {
@@ -407,6 +415,11 @@ button {
     .login-status {
         text-align: right;
         font-weight: 500;
+        margin-right: 55px;
     }
-
+    .guest-status {
+        text-align: left;
+        font-weight: 500;
+        color: beige;
+    }
 }

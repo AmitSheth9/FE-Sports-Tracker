@@ -156,10 +156,12 @@ export default function BetInputForm() {
 return (
 <div>
     <div className='intro-container'>
+        {!auth.username && <div className='guest-status'>Login as U: guest and PW: guest to see a sample</div>}
         {auth.username ? 
         <div className='login-status'>You are logged in as {auth.username}</div> : 
         <div className='login-status'>You are not logged in, <Link to='/login'>Login here</Link> or <Link to='/signup'>Signup here</Link></div>}<br/>
-        <div className='form-intro'>Submit your bet details below. All fields are optional, the more data you provide the better the analysis.</div>
+        <div className='form-intro'>Submit your bet details below. All fields are optional, the more data you provide the better the analysis. </div>
+        
     </div>
     <div >
         <form className="form-container" onSubmit={handleSubmit}>
