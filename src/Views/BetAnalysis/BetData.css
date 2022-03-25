@@ -159,7 +159,7 @@ a {
     td {
         border: 1px solid black;
         font-weight: 600;
-        padding: 8px;
+        padding: 3px;
         font-size:8px;
     }
     .bet-distribution {
@@ -196,8 +196,8 @@ a {
         margin-left: 0;
         background-color:beige;
         color: black;
-        width: 50%;
-        font-size: 10px;
+        width: 40%;
+        font-size: 8px;
     }
     legend {
         font-size: 15px;
@@ -270,6 +270,5 @@ a {
         font-weight: 800;
         font-size: 15px;
         color: beige;
-        /* border: 1px solid beige; */
     }
 }
