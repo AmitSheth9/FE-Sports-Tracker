@@ -26,9 +26,11 @@ body {
 }
 .form-intro {
     color: brown;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 700;
     margin-left: 5px;
+    margin-top: 20px;
+    padding: 5px;
 }
 label {
     font-size: 100%;
@@ -202,14 +204,18 @@ button {
     text-align: right;
     font-weight: 500;
     margin-right: 5px;
+    font-size: 20px;
 }
 .guest-status {
     text-align: left;
     font-weight: 500;
     color: brown;
     margin-left: 5px;
+    
 }
-
+.intro-container {
+    padding: 5px;
+}
 @media (max-width: 1000px) {
 
     .form-container {
@@ -236,11 +242,12 @@ button {
     }
     .form-intro {
         color: brown;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 700;
+       
     }
     label {
-        font-size: 50%;
+        font-size: 60%;
         border: 3px solid brown;
         margin: 5px;
         color: black;
@@ -291,12 +298,10 @@ button {
     .div-spread {
         margin-top: 15px;
     }
-    .div-total {
-        margin-top: 15px;
-    }
+    
     .div-conditional-container {
         display: flex;
-        height: 60px;
+        height: 100px;
         background-color:beige;
         margin-bottom: 25px;
         justify-content: space-evenly;
@@ -304,6 +309,17 @@ button {
         margin-right: 16%;
         border-radius: 8px;
     
+    }
+    .div-total {
+        margin-top: 15px;
+        display: flex;
+     }
+    .label-total-amount {
+        width: 30%;
+    }
+    .label-total-price {
+
+        width: 670%;
     }
     .label-spread-price {
         width: 50%; 
@@ -413,13 +429,16 @@ button {
         color: brown;
     }
     .login-status {
-        text-align: right;
+        
         font-weight: 500;
-        margin-right: 55px;
+        
     }
     .guest-status {
-        text-align: left;
+        font-size: 20px;
         font-weight: 500;
         color: beige;
+    }
+    .intro-container{
+      display: flex;
     }
 }

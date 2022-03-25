@@ -18,5 +18,9 @@ fieldset{
     padding: 10px;
 }
 legend {
-    color: brown
+    color: brown;
+}
+.error {
+    color: beige;
+    font-size: 15px;
 }

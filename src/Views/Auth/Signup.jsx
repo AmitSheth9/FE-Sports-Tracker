@@ -24,11 +24,16 @@ export default function Signup() {
     const handleSubmit = async (e) => {
         try{
         e.preventDefault();
+        if(password.length > 4){
         let obj = { username: username, password: password, date: signupDate };
         const response = await signUp(obj);
         console.log(response);
         history.replace('/login');
         alert('You have succesfully signed up for Bettracker. Please login with your credentials')
+        }
+        else {
+            alert('Please enter a password at least 5 characters');
+        }
         }catch (err){
         setError(err.message)
         }

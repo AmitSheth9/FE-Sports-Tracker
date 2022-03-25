@@ -63,8 +63,8 @@ const handleSubmit = async (e) =>{
                 <Link className='link' to='/home'>Home</Link>
                 <Link className='link' to='/'>BetForm</Link>
             </div>
-            <div>
-                {errorx && <p>{errorx}</p>}
+            <div >
+                {errorx && <p className = 'error'>Invalid: Please Enter correct credentials</p>}
             </div>
         </div>
     )

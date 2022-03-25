@@ -70,12 +70,9 @@ export default function BetData() {
     const removeBet = async (id) => {
         const answer = window.confirm('This will remove the selected bet. Continue?');
         if(answer) {
-        console.log(id);
         let deletedBet = await deleteBet(id);
-        console.log('delete bet', betData);
         console.log(deletedBet)
         let response = await getBetData(auth.username);
-        console.log(response.body[0])
         setBetData(response.body[0]);
         }
     }
@@ -84,13 +81,18 @@ export default function BetData() {
 
 
         <div>
-            {auth.username ? 
-            <div className='login-status'>Logged in as {auth.username}</div> : 
-            <div className='login-status'>Not logged in</div>}
+            <div className='data-header'>
+                <span className='back'><Link to='/'>{"<"}Back</Link></span>
+                {auth.username ? 
+                <span className='login-status'>Logged in as {auth.username}</span> : 
+                <span className='login-status'>Not logged in</span>}
+            </div>
+           <div>
             {!betData.length && 
             <div className = 'nobets'>You have not submitted any bets to track. Submit a bet in the <Link to='/'>BetForm</Link></div>}
+            </div>
             <div className = 'summary'>Summary
-                <br/><br/><div className='heading'>Bets Tracked: {betData.length}</div>
+                <br/><div className='heading'>Bets Tracked: {betData.length}</div>
                 <div className='heading'>Record: {wins}-{losses}-{pushes}</div>
                 <div className='heading'>Net result: ${Number(netResult.toFixed(2))}</div>
                 <div className='heading'>Win percentage: {winPercentage}%</div>
