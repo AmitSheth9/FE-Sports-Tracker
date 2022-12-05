@@ -1,6 +1,6 @@
 
 body {
-    background-color: black;
+    background-color: white;
 }
 .form-container {
     display: grid;
@@ -11,7 +11,7 @@ body {
     display: flex;
     margin-left: 10%;
     margin-right: 16%;
-    background-color: beige;
+    background-color: white;
     height: 65px;
     border-radius: 8px;
 }

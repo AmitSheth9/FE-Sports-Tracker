@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import request, { listenerCount } from 'superagent';
 
-//const URL = 'http://localhost:7890';
-const URL = 'https://salty-beyond-78599.herokuapp.com';
+const URL = 'http://localhost:7890';
+//const URL = 'https://salty-beyond-78599.herokuapp.com';
 export async function signUp(obj) {
     const response = await request
     .post(`${URL}/signup`)

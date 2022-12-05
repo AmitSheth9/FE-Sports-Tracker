@@ -2,13 +2,13 @@
 
 .welcome {
     font-size: 50px;
-    color: beige;
+    color: brown;
     font-weight: 800;
 }
 
 .intro {
     font-size: 30px;
-    color: beige;
+    color: brown;
     font-weight: 700;
     border: beige;
 }
@@ -16,7 +16,7 @@
     border: none;
 }
 .logo {
-    color: beige;
+    color: brown;
     text-decoration: none;
 }
 a {
@@ -24,7 +24,7 @@ a {
 }
 .guest {
     font-size: 20px;
-    color: beige;
+    color: brown;
     font-weight: 700;
     border: beige;
 }
