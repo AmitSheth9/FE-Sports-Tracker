@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import request, { listenerCount } from 'superagent';
 
-const URL = 'https://3.84.84.250:7890';
+const URL = 'http://ec2-3-83-46-185.compute-1.amazonaws.com:7890';
 //this is aws be ip
 //const URL = 'http://localhost:7890';
 //const URL = 'https://salty-beyond-78599.herokuapp.com';
